@@ -15,27 +15,68 @@ h1{
     background-color: beige;
 }
 
-#formulario{
+#botones{
     margin-top: 10px;
     padding: 15px;
     background-color:aliceblue;
     display: flex;
+    justify-content: space-around;
+}
+
+#formulario{
+    display:none;
+    margin-top: 10px;
+    padding: 15px;
+    background-color:aliceblue;
     flex-direction: column;
     gap: 15px;
 }
 
-#formAdd{
-    display: flex;
-    gap: 30px;
+.delete{
+    height: 100%;
+    padding: 5px;
+    background-color: rgb(253, 108, 108);
+    border-radius: 10px;
+    border: 1px rgb(218, 40, 40) solid;
 }
 
-#add{
+.edit{
+    height: 100%;
+    padding: 5px;
+    background-color: rgb(103, 160, 245);
+    border-radius: 10px;
+    border: 1px rgb(33, 95, 187) solid;
+}
+
+.add{
     height: 100%;
     padding: 5px;
     background-color: rgb(199, 250, 123);
     border-radius: 10px;
     border: 1px rgb(154, 202, 82) solid;
 }
+
+#form{
+    display: flex;
+    gap: 30px;
+}
+
+#idTarea{
+    display: none;
+}
+
+#delete{
+    display: none;
+}
+
+#edit{
+    display: none;
+}
+
+#add{
+    display: none;
+}
+
 #listaTarea{
     margin-top: 10px;
     padding: 15px;
