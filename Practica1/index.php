@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de tareas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Gestión de tareas</h1>
+
+    <div id="botones">
+
+    </div>
+
+    <div id="formulario">
+        <h2>Agregar Tarea</h2>
+        <form action="GET" id="formAdd">
+            <input type="text" name="tarea" id="tarea">
+            <select name="estado" id="estado">
+                <option value="pendiente">Pendiente</option>
+                <option value="en_progreso">En progreso</option>
+                <option value="completo">Completo</option>
+            </select>
+            <button type="submit" id="add">
+                Agregar Tarea
+            </button>
+        </form>
+    </div>
+    <div id="listaTarea">
+        <h2>Lista Tareas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>TAREA</th>
+                    <th>ESTADO</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>hiosljfjso</td>
+                    <td>pendiente</td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    <div>
+        <?php
+            require 'funciones.php';
+        $l = leerFichero("tareas.txt");
+        print_r($l);
+        addId($l);
+        print_r($l);
+        $l[0] -> estado = "completo";
+        escribirFichero('tareas.txt', $l);
+        ?>
+    </div>
+</body>
+</html>

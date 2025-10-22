@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    max-width: 100%; 
+    min-height: 100%;
+}
+
+h1{
+    padding: 20px;
+    text-align: center;
+    background-color: beige;
+}
+
+#formulario{
+    margin-top: 10px;
+    padding: 15px;
+    background-color:aliceblue;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#formAdd{
+    display: flex;
+    gap: 30px;
+}
+
+#add{
+    height: 100%;
+    padding: 5px;
+    background-color: rgb(199, 250, 123);
+    border-radius: 10px;
+    border: 1px rgb(154, 202, 82) solid;
+}
+#listaTarea{
+    margin-top: 10px;
+    padding: 15px;
+    background-color:blanchedalmond;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px black solid;
+    background-color: white;
+}
+
+th,td{
+    border:1px solid black;
+    padding: 10px;
+    text-align: center;
+}
+th{
+    border-bottom: 2px solid black;
+}
