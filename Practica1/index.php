@@ -51,48 +51,8 @@ require 'funciones.php';
     <div id="listaTarea">
         <h2>Lista Tareas</h2>
         <?php
-$tareas = leerFichero("tareas.txt");
-// addId($tareas);
-$table = visualizarTarea($tareas);
-echo $table;
+            $tareas = leerFichero("tareas.txt");
+echo visualizarTarea($tareas);
 ?>
-        <!-- <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>TAREA</th>
-                    <th>ESTADO</th>
-                    <-- <th>BOTONES</th> ->
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>hiosljfjso</td>
-                    <td>pendiente</td>
-                    <-- <td id="elimEdit">
-                        <button type="submit" class="delete" id="btElim">
-                            Eliminar Tarea
-                        </button>
-                        <button type="submit" class="edit" id="btEditar">
-                            Editar Tarea
-                        </button>
-                    </td> ->
-                </tr>
-            </tbody>
-        </table> -->
-        
-    </div>
-    <!-- <div>
-        <?php
-//     require 'funciones.php';
-// $l = leerFichero("tareas.txt");
-// print_r($l);
-// addId($l);
-// print_r($l);
-// $l[0] -> estado = "completo";
-// escribirFichero('tareas.txt', $l);
-?>
-    </div> -->
 </body>
 </html>
