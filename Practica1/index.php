@@ -51,7 +51,8 @@ require 'funciones.php';
     <div id="listaTarea">
         <h2>Lista Tareas</h2>
         <?php
-$tareas = leerFichero('tareas.txt');
+$tareas = leerFichero("tareas.txt");
+// addId($tareas);
 $table = visualizarTarea($tareas);
 echo $table;
 ?>

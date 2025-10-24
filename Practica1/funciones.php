@@ -22,7 +22,7 @@ function leerFichero($archivo)
                     ];
                 }
             }
-            $tareas = addId($tareas);
+            addId($tareas);
         }
     }
 
@@ -72,7 +72,7 @@ function visualizarTarea(&$tareas)
     $tabla .= "</thead>";
     $tabla .= "<tbody>";
 
-    foreach ($tareas as $num => $tarea) {
+    foreach ($tareas as $tarea) {
 
         $idTarea = $tarea -> id;
         $nomTarea = $tarea -> tarea;
@@ -91,7 +91,6 @@ function visualizarTarea(&$tareas)
         $tabla .= "</button>";
         $tabla .= "</td> -->";
         $tabla .= "</tr>";
-        echo $num;
     }
 
     $tabla .= "</tbody>";
