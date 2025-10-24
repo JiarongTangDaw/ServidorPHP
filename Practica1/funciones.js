@@ -76,7 +76,7 @@ function formulario (opcion) {
             btElim.style.display = "none";
             btAgregar.style.display = "none";
             btEditar.style.display = "block";
-            barEstado.style.display = "none";
+            barEstado.style.display = "block";
             inputIdTarea.style.display = "block";
             inputTarea.style.display = "none";
             break;
