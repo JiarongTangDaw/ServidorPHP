@@ -8,6 +8,7 @@
         // obtencion del año escrito en el formulario
         $anio = $_POST['anio'];
         
+        // hacer global las variables de datos.php para poder usarlos
         global $Meses;
         global $diasSemana;
 
