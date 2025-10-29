@@ -1,6 +1,6 @@
 <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Obtenemos la acción del query string
+        // Obtenemos la acción del query string (URL)
         $accion = $_GET['action'] ?? '';
 
         $nombre = $_POST['nombre'];
