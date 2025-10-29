@@ -5,24 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio1</title>
     <script src="funciones.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form>
+    
+    <form action="funciones.php" name="formulario" id="formulario" method="post">
 
-        <input type="hidden" name="nombre" id="name">
-        <input type="hidden" name="apellidos" id="ape">
-        <input type="hidden" name="direccion" id="direction">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label> 
+            <input type="text" name="nombre" id="nombre" placeholder="nombre">
+        </div>
 
-        <input type="text" name="nombre" id="nombre" placeholder="nombre">
-        <input type="text" name="apellidos" id="apellidos" placeholder="apellidos">
-        <input type="text" name="direccion" id="direccion" placeholder="direccion">
-        <select name="sexo" id="sexo">
-            <option value="hombre">Hombre</option>
-            <option value="mujer">Mujer</option>
-            <option value="otro">Otro</option>
-        </select>
-        <input type="checkbox" name="estudios" id="estudios"> Estudios de grado medio
-        <button type="submit">Sumit</button>
+        <div class="form-group">
+            <label for="apellidos">Apellidos:</label> 
+            <input type="text" name="apellidos" id="apellidos" placeholder="apellidos">
+        </div>
+       
+        <div class="form-group">
+            <label for="direccion">Direccion:</label> 
+            <input type="text" name="direccion" id="direccion" placeholder="direccion">
+        </div>
+        
+        <div class="form-group">
+            <label for="sexo">Sexo:</label> 
+            <select name="sexo" id="sexo">
+                <option value="hombre">Hombre</option>
+                <option value="mujer">Mujer</option>
+                <option value="otro">Otro</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <input type="checkbox" name="estudios" id="estudios">
+            <label for="estudios">Grado Medio</label>
+        </div>
+        
+        <button type="submit">Enviar formulario</button>
     </form>
 </body>
 </html>
