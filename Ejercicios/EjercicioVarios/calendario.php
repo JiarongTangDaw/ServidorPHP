@@ -14,6 +14,7 @@
 
         // comprobar si el año es bisiesto o no
         if(($anio % 4)!= 0){
+            // cambio el valor de dia a 28 si no es bisiesto
             $Meses[1]['dias'] = 28;
         }
 
