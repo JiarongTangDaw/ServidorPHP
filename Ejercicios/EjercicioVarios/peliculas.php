@@ -22,7 +22,7 @@
     mostrar($movieTitles);
 
     echo "<h2> LISTA DESPUES DE ORDENAR </h2>";
-    $copia = unserialize(serialize($movieTitles));
+    $copia = $movieTitles;
     sort($copia);
     mostrar($copia);
     echo "<h3> Original </h3><br>";
@@ -35,7 +35,7 @@
     mostrar($movieTitles);
 
     echo "<h2> Mi lista de peliculas </h2><br>";
-    $miLista = unserialize(serialize($movieTitles));
+    $miLista = $movieTitles;
 
     array_splice($miLista,0,1,"NeZha");
     array_splice($miLista,4,1,"El castillo ambulante");
@@ -63,7 +63,7 @@
     mostrar2($bestMovies);
 
     echo "<h2> LISTA DESPUES DE ORDENAR </h2><br>";
-    $copia2 = unserialize(serialize($bestMovies));
+    $copia2 = $bestMovies;
     usort($bestMovies,function($a,$b){
         return $a['title']  <=> $b['title'];
     });
@@ -78,7 +78,7 @@
     mostrar2($bestMovies);
 
     echo "<h2> Mi lista de peliculas </h2><br>";
-    $miLista2 = unserialize(serialize($bestMovies));
+    $miLista2 = $bestMovies;
 
     array_splice($miLista2,0,1,[["title" => "NeZha", "director" => "Jiaozi", "actor" => "Griffin Puatu"]]);
     array_splice($miLista2,4,1,[["title" => "El castillo ambulante", "director" => "Hayao Miyazaki", "actor" => "Chieko Baisho"]]);
