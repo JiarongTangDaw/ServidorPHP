@@ -1,12 +1,13 @@
 <?php
     require_once 'datos.php';
 
+    // funcion para mostrar arrays simples
     function mostrar($lista){
         foreach($lista as $elem){
             echo "$elem <br>";
         }
     }
-
+    // funcion para mostrar arrays asociativos
     function mostrar2($lista){
         foreach($lista as $elem){
             print_r($elem);
@@ -101,34 +102,26 @@
     echo "<h2> ARRAY DE OBJETOS </h2><br>";
     $listaObj = [];
     foreach($bestMovies as $peli){
-        $array = [];
-        echo count($listaObj);
-        if(count($listaObj) == 0){
-            $array['director'] = $peli['director'];
-            $array['Numero_veces_aparece'] = 1;
+        // buscar en la lista de objetos si tengo un elemento con es mismo nombre de director que el bestMovies
+        $existeDirector = array_filter($listaObj,function($elem) use($peli){
+            return $elem['director'] == $peli['director'];
+        });
+        // si no hay ninguno con el mismo director
+        if(count($existeDirector) == 0){
+            // busca en el array de bestMovies las pelis que tiene el mismo director que el dado
+            $listDirector = array_filter($bestMovies,function($elem) use ($peli){
+                 return $elem['director'] == $peli['director'];
+            });
+            // cuenta el numero de elementos en la lista director
+            $numDirec = count($listDirector);
+            $esPesado = false;
+            // comprueba si el director es Christopher Nolan
             if($peli['director'] == "Christopher Nolan"){
-                $array['pesado'] = true;
-            }else{
-                $array['pesado'] = false;
+                $esPesado = true;
             }
-        }else{
-            foreach($listaObj as $elem){
-                if($elem ['director'] == $peli['director']){
-                    $elem['Numero_veces_aparece']++;
-                }else{
-                    $array['director'] = $peli['director'];
-                    $array['Numero_veces_aparece'] = 1;
-                    if($peli['director'] == "Christopher Nolan"){
-                        $array['pesado'] = true;
-                    }else{
-                        $array['pesado'] = false;
-                    }
-                }
-            }
-        }
-        if($array != []){
-            $listaObj[] = $array;
-        }
-    }
+            //añadir en el array final el nuevo elemento al final
+            array_push($listaObj, ["director" => $peli['director'], "Contador" => $numDirec, "pesado" => $esPesado]);
+        };
+    };
     mostrar2($listaObj);
 ?>
