@@ -25,7 +25,14 @@
     echo "<h1>PASAJERSO <= 100 </h1><br>";
     print_r($final);
 
-    $tabla = "<table border = '1'> <tbody>";
+    $tabla = "<table border = '1'> 
+            <thead>
+                <tr>
+                    <th> Nave </th>
+                    <th> Enlace Pelicula </th>
+                </tr>
+            </thead>
+            <tbody>";
     foreach($lista as $nave){
         $tabla .= "<tr>
             <td>{$nave['name']}</td>
