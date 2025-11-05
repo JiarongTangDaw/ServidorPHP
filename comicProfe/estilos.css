@@ -1,0 +1,113 @@
+/* ==== ESTRUCTURA GENERAL ==== */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f6f8;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+#principal {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+/* ==== CABECERA ==== */
+#cabecera {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  background-color: #1976d2;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 6px 6px 0 0;
+  text-align: center;
+}
+
+/* ==== FILTROS ==== */
+#filtro {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  background-color: #e9eef3;
+  border-bottom: 2px solid #1976d2;
+}
+
+#filtro input,
+#filtro select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ==== LISTADO ==== */
+#listado {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 0;
+}
+
+#listado > div {
+  padding: 6px;
+}
+
+#listado input[type="text"] {
+  width: 95%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ==== BOTONES ==== */
+#listado input[type="button"] {
+  padding: 6px 10px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  transition: background-color 0.2s;
+}
+
+#listado input[value="ADD"] {
+  background-color: #4caf50;
+}
+#listado input[value="ADD"]:hover {
+  background-color: #43a047;
+}
+
+#listado input[value="MOD"] {
+  background-color: #ffb300;
+}
+#listado input[value="MOD"]:hover {
+  background-color: #ffa000;
+}
+
+#listado input[value="DEL"] {
+  background-color: #e53935;
+}
+#listado input[value="DEL"]:hover {
+  background-color: #d32f2f;
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 600px) {
+  #cabecera,
+  #filtro,
+  #listado {
+    grid-template-columns: 1fr;
+  }
+  #listado input[type="button"] {
+    width: 100%;
+    margin: 5px 0;
+  }
+}

@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "tarea": "Revisar informes",
+        "estado": "pendiente"
+    },
+    {
+        "id": 2,
+        "tarea": "Enviar correo al clienteaaaaa",
+        "estado": "pendiente"
+    },
+    {
+        "id": 3,
+        "tarea": "Actualizar base de datos",
+        "estado": "en progreso"
+    },
+    {
+        "id": 4,
+        "tarea": "Preparar presentación",
+        "estado": "pendiente"
+    },
+    {
+        "id": 5,
+        "tarea": "Subir cambios al servidoreee",
+        "estado": "pendiente"
+    },
+    {
+        "id": 6,
+        "tarea": "erewrewr",
+        "estado": "en progreso"
+    },
+    {
+        "id": 7,
+        "tarea": "Revisar Rubica",
+        "estado": "pendiente"
+    },
+    {
+        "id": 8,
+        "tarea": "Tarea nueva",
+        "estado": "en progreso"
+    },
+    {
+        "id": 9,
+        "tarea": "hola",
+        "estado": "pendiente"
+    }
+]
