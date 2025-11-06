@@ -92,31 +92,33 @@ function listarComic($titulo,$autor,$estado,$ubicacion,$prestado) {
     }
 
     // filtrar por titulo
-    if($titulo != ''){
+    if($titulo != ''){ // hay valor en titulo
         $comics =  array_filter($comics, function($comic) use ($titulo){
+            // comprobamos que el titulo contenga lo que hemos escrito en el filtro
             return str_contains(strtolower($comic -> titulo), strtolower($titulo)) == true;
         });
     }
     // filtar por autor
-    if($autor != ''){
+    if($autor != ''){ // hay valor en autor
         $comics = array_filter($comics, function($comic) use ($autor){
+            // comprobar que el autor contenga lo que se ha escrito en el filtro
             return str_contains(strtolower($comic -> autor), strtolower($autor)) == true;
         });
     }
     //filtrar por estado
-    if($estado != ''){
+    if($estado != ''){ // hay valor en estado
         $comics = array_filter($comics, function ($comic) use ($estado) {
             return $comic -> estado == $estado;
         });
     }
     //filtrar por ubicacion
-    if ($ubicacion != ''){
+    if ($ubicacion != ''){ // hay valor en ubicacion
         $comics = array_filter($comics, function ($comic) use ($ubicacion) {
             return $comic -> ubicacion == $ubicacion;
         });
     }
     //filtrar por prestado
-    if ($prestado != ''){
+    if ($prestado != ''){ // hay valor en prestado
         $prestadoB = $prestado == 'si'? true : false;
         $comics = array_filter($comics, function ($comic) use ($prestadoB) {
             return $comic -> prestado == $prestadoB;
@@ -155,7 +157,7 @@ function eliminarComic($id) {
     if ($comics === null || $comics === false) {
         return false;
     }
-
+    // recorremos el array de comics
     foreach ($comics as $index => $comic) {
         if ($comic->id == $id) {
             unset($comics[$index]); // Elimina el elemento
@@ -174,6 +176,7 @@ function eliminarComic($id) {
 function modificarComic($id,$newTitulo,$newAutor,$newEstado,$newUbicacion,$newPrestado) {
     // Cargo el JSON en memoria
     $comics = cargarJSON('comics.json');
+    // comprobar que el archivo json sea leido correctamente
     if ($comics === null || $comics === false) {
         return false;
     }

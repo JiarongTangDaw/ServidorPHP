@@ -1,6 +1,5 @@
 //funcion para agregar el comic al listado
 function agregar() {
-    debugger;
     // sacar los valores de entrada tras rellenar los campos
     let titulo0 = document.getElementById('titulo0').value;
     let autor0 = document.getElementById('autor0').value;
@@ -9,9 +8,9 @@ function agregar() {
     let prestado0 = document.getElementById('prestado0').value;
 
     //comprobar que no hay campos vacios
-    if(titulo0 == "" || autor0 == "" || estado0 == "" || ubicacion0 == "" || prestado0 == ""){
+    if(titulo0 == "" || autor0 == "" || estado0 == "" || ubicacion0 == "" || prestado0 == ""){ // si hay campos vacios
         alert('No puede haber campos vacios al añadir un comic nuevo');
-    }else{
+    }else{// no hay campos vacios
         // dar valor a los input hidden para enviarlos a PHP
         document.getElementById('titulo').value = titulo0;
         document.getElementById('autor').value = autor0;
@@ -57,7 +56,8 @@ function eliminar(id) {
    // confirmamos que el usuario quiere realizar la eliminacion
    let salida = confirm(`Va a eliminar el comic ${titulo}.¿Desea continuar?`);
 
-   if(salida){
+   // si se acepta la eliminacion se realiza la eliminacion
+   if(salida){// se confirma la eliminacion
         // dar valor al input hidden de id porque solo necesitamos saber el valor del id para realizar el delete
         document.getElementById('id').value = id;
 
