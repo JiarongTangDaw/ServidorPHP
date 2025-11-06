@@ -50,7 +50,7 @@ p{
     font-weight: bold;
 }
 
-#listado{
+#listado,#nuevo{
     display: grid;
     grid-template-columns: 2fr 2fr 1fr 1fr 1fr 2fr;
     align-items: center;
@@ -63,7 +63,7 @@ p{
   padding: 6px;
 }
 
-#listado input[type="text"] {
+#listado input[type="text"], #nuevo input[type="text"] {
   width: 95%;
   padding: 6px;
   border: 1px solid #ccc;
@@ -77,7 +77,7 @@ p{
 }
 
 /* ==== BOTONES ==== */
-#listado input[type="button"] {
+#listado input[type="button"],#nuevo input[type="button"] {
   padding: 6px 10px;
   margin-right: 5px;
   margin-bottom: 5px;
@@ -89,11 +89,11 @@ p{
   transition: background-color 0.2s;
 }
 
-#listado input[value="ADD"] {
+#nuevo input[value="NUEVO"] {
   background-color: #4caf50;
 }
-#listado input[value="ADD"]:hover {
-  background-color: #43a047;
+#nuevo input[value="NUEVO"]:hover {
+  background-color: #1f8324;
 }
 
 #listado input[value="MOD"] {
@@ -114,7 +114,8 @@ p{
 @media (max-width: 800px) {
   #cabecera,
   #valorFiltro,
-  #listado {
+  #listado,
+  #nuevo {
     grid-template-columns: 1fr;
   }
   .botones{

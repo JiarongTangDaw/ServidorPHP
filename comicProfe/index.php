@@ -50,7 +50,10 @@ $tareas = listarTareas($filtarea, $filestado);
             </div>
             <div id="listado">
                 <?php
-                    foreach ($tareas as $tarea) {
+                    if($tareas == false){
+                        echo "<h2> No hay tareas aun </h2>";
+                    }else{
+                        foreach ($tareas as $tarea) {
                         ?>
                 <div><input type="text" id="tarea<?= $tarea->id ?>"
                         value="<?= $tarea->tarea ?>" />
@@ -76,7 +79,7 @@ $tareas = listarTareas($filtarea, $filestado);
                         value="DEL" />
                 </div>
                 <?php
-                    }
+                        };};
 ?>
             </div>
         </div>

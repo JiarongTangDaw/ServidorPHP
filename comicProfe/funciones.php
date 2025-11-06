@@ -148,6 +148,10 @@ function listarTareas($tarea, $estado)
 {
     $tareas = cargarJSON('tareas.json');
 
+    if ($tareas === null) {
+        return false;
+    }
+
     $tareas = array_filter($tareas, function ($otarea) use ($tarea, $estado) {
 
         if ($tarea != '' && $estado != '') {

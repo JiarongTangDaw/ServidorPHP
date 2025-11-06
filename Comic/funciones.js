@@ -1,53 +1,23 @@
-// funcion para añadir una fila en blanco en la lista para añadir comic
-function anadirFila(){
-    let listado=document.getElementById('listado');
-
-    let lhtml=listado.innerHTML;
-
-    let fila=`input type="text" id="titulo0" value="" required>
-                <input type="text" id="autor0" value="" required>
-                <select id="estado0" required>
-                    <option value=""></option>
-                    <option value="pendiente">Pendiente</option>
-                    <option value="leyendo">Leyendo</option>
-                    <option value="leido">Leido</option>
-                </select>
-                <select id="ubicacion0" required>
-                    <option value=""></option>
-                    <option value="estanteria1">Estanteria 1</option>
-                    <option value="estanteria2">Estanteria 2</option>
-                    <option value="mueble">Mueble</option>
-                </select>
-                <select name="prestado" id="prestado0" required>
-                    <option value=""></option>
-                    <option value="si">Si</option>
-                    <option value="no">No</option>
-                </select>
-                <div class="botones">
-                    <input type="button" id="btAdd" onclick="agregar();" value="ADD">
-                </div>>`
-    listado.innerHTML=lhtml+ fila;
-}
-
 //funcion para agregar el comic al listado
 function agregar() {
+    debugger;
     // sacar los valores de entrada tras rellenar los campos
-    let titulo = document.getElementById('titulo0').value;
-    let autor = document.getElementById('autor0').value;
-    let estado = document.getElementById('estado0').value;
-    let ubicacion = document.getElementById('ubicacion0').value;
-    let prestado = document.getElementById('prestado0').value;
+    let titulo0 = document.getElementById('titulo0').value;
+    let autor0 = document.getElementById('autor0').value;
+    let estado0 = document.getElementById('estado0').value;
+    let ubicacion0 = document.getElementById('ubicacion0').value;
+    let prestado0 = document.getElementById('prestado0').value;
 
     //comprobar que no hay campos vacios
-    if(titulo == "" || autor == "" || estado == "" || ubicacion == "" || prestado == ""){
-        alert('No puede haber campos vacios');
+    if(titulo0 == "" || autor0 == "" || estado0 == "" || ubicacion0 == "" || prestado0 == ""){
+        alert('No puede haber campos vacios al añadir un comic nuevo');
     }else{
         // dar valor a los input hidden para enviarlos a PHP
-        document.getElementById('titulo').value = titulo;
-        document.getElementById('autor').value = autor;
-        document.getElementById('estado').value = estado;
-        document.getElementById('ubicacion').value = ubicacion;
-        document.getElementById('prestado').value = prestado;
+        document.getElementById('titulo').value = titulo0;
+        document.getElementById('autor').value = autor0;
+        document.getElementById('estado').value = estado0;
+        document.getElementById('ubicacion').value = ubicacion0;
+        document.getElementById('prestado').value = prestado0;        
 
         //cambiamos el action del formulario añadiendo una propiedad de action con valor add
         let formulario = document.getElementById('formulario');
@@ -57,6 +27,7 @@ function agregar() {
     }
 }
 
+//funcion para modificar valores de un comic
 function modificar(id) {
     // sacar los valores de cada campo para la modificacion
     let titulo = document.getElementById('titulo'+ id).value;
@@ -80,6 +51,7 @@ function modificar(id) {
     formulario.submit();
 }
 
+//funcion para eliminar un comic
 function eliminar(id) {
    let titulo = document.getElementById('titulo'+ id).value;
    // confirmamos que el usuario quiere realizar la eliminacion
@@ -98,6 +70,7 @@ function eliminar(id) {
     
 }
 
+//funcion para filtrar comics
 function filtrar() {
     // sacar los valores de cada campo para la modificacion
     let titulo = document.getElementById('filTitulo').value;
