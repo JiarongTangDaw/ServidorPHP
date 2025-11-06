@@ -1,18 +1,18 @@
 [
     {
         "id": 1,
+        "titulo": "One piece",
+        "autor": "Eiichi Oda",
+        "estado": "pendiente",
+        "ubicacion": "estanteria1",
+        "prestado": true
+    },
+    {
+        "id": 2,
         "titulo": "Sakura Card Captor",
         "autor": "Nanase Ohkawa",
         "estado": "leyendo",
         "ubicacion": "estanteria2",
-        "prestado": false
-    },
-    {
-        "id": 2,
-        "titulo": "One piece",
-        "autor": "Eichiro Oda",
-        "estado": "pendiente",
-        "ubicacion": "estanteria1",
-        "prestado": false
+        "prestado": true
     }
 ]

@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             agregarComic($titulo, $autor, $estado, $ubicacion,$prestado);
             volver();
             break;
-
         default:
     }
 }
