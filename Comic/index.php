@@ -125,7 +125,7 @@
                     <option value="estanteria2" <?= $comic -> ubicacion === 'estanteria2'? 'selected' : '' ?> >Estanteria 2</option>
                     <option value="mueble" <?= $comic -> ubicacion === 'mueble'? 'selected' : '' ?> >Mueble</option>
                 </select>
-                <select name="prestado" id="prestado<?= $comic -> id ?>">
+                <select name="prestado<?= $comic -> id ?>" id="prestado<?= $comic -> id ?>">
                     <option value="si" <?= $comic -> prestado === true? 'selected' : '' ?> >Si</option>
                     <option value="no" <?= $comic -> prestado === false? 'selected' : '' ?> >No</option>
                 </select>

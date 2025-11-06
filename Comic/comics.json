@@ -14,5 +14,13 @@
         "estado": "leyendo",
         "ubicacion": "estanteria2",
         "prestado": true
+    },
+    {
+        "id": 3,
+        "titulo": "Naruto",
+        "autor": "Masashi Kishimoto",
+        "estado": "leido",
+        "ubicacion": "mueble",
+        "prestado": false
     }
 ]
