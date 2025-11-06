@@ -88,7 +88,7 @@ function filtrar() {
 
     //cambiamos el action del formulario añadiendo una propiedad de action con valor filtrar
     let formulario = document.getElementById('formulario');
-    formulario.action = 'index.php';
+    formulario.action = 'index.php?action=filtrar';
 
     formulario.submit();
     
