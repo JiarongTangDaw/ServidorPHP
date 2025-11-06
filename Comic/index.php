@@ -108,7 +108,7 @@
             </div>
             <div id="listado">
                 <?php
-                    if($comics == false){
+                    if($comics === false){
                         echo "<h2> No hay Comics aun, añade uno </h2>";
                     }else{
                         foreach ($comics as $comic) {
