@@ -35,19 +35,26 @@ function modificar(id) {
     let ubicacion = document.getElementById('ubicacion' + id).value;
     let prestado = document.getElementById('prestado' + id).value;
 
-    // dar valor a los input hidden para enviarlos a PHP
-    document.getElementById('titulo').value = titulo;
-    document.getElementById('autor').value = autor;
-    document.getElementById('estado').value = estado;
-    document.getElementById('ubicacion').value = ubicacion;
-    document.getElementById('prestado').value = prestado;
-    document.getElementById('id').value = id;
+    //! AÑADIDO DESPUES DE PRUEBA
+    if(titulo == "" || autor == "" || estado == "" || ubicacion == "" || prestado == ""){ // si hay campos vacios
+        alert('No puede haber campos vacios al modificar un comic');
+    }else{// no hay campos vacios
+        // dar valor a los input hidden para enviarlos a PHP
+        document.getElementById('titulo').value = titulo;
+        document.getElementById('autor').value = autor;
+        document.getElementById('estado').value = estado;
+        document.getElementById('ubicacion').value = ubicacion;
+        document.getElementById('prestado').value = prestado;
+        document.getElementById('id').value = id;
 
-    //cambiamos el action del formulario añadiendo una propiedad de action con valor modificar
-    let formulario = document.getElementById('formulario');
-    formulario.action = 'funciones.php?action=modificar';
+        //cambiamos el action del formulario añadiendo una propiedad de action con valor modificar
+        let formulario = document.getElementById('formulario');
+        formulario.action = 'funciones.php?action=modificar';
 
-    formulario.submit();
+        formulario.submit();
+    }
+
+    
 }
 
 //funcion para eliminar un comic

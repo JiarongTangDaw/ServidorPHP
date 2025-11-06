@@ -22,5 +22,13 @@
         "estado": "leido",
         "ubicacion": "mueble",
         "prestado": false
+    },
+    {
+        "id": 4,
+        "titulo": "Fairy Tail",
+        "autor": "Hiro Mashima",
+        "estado": "pendiente",
+        "ubicacion": "estanteria2",
+        "prestado": false
     }
 ]
