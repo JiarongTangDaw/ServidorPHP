@@ -18,7 +18,7 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = $_POST['correo'] ?? '';
     //pattern para validar correo
-    $patrongCorreo = "/^[a-zA-Z0-9]{1}[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]{1}[a-zA-Z0-9.-][a-zA-Z0-9]{1}+\.[a-zA-Z]{2,}$/";
+    $patrongCorreo = "/^[a-zA-Z0-9]{1}[a-zA-Z0-9._%+-]+@(?!.*\.[a-z]{1,10}\.[a-z]{2,4}$)[a-zA-Z0-9]{1}[a-zA-Z0-9-]*[a-zA-Z0-9]{1}(\.[a-zA-Z0-9]{1}[a-zA-Z0-9-]*[a-zA-Z0-9]{1})*\.[a-zA-Z]{2,}$/i";
 
     // Validar correo
     if (empty($correo)){
