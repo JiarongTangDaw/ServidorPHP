@@ -25,24 +25,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dni = $_POST['dni'] ?? '';
     $patronDNI = "/^[0-9]{8}[A-Za-z]$/";
 
+    // Validar campos
 
-    // Validar nombre
-    if (empty($nombre)){
+    if(empty($nombre)){ // comprobar si está vacío nombre
         echo "El nombre no puede estar vacío.<br>";
-    } else{
-        if(empty($apellido)){// Validar apellido
-            echo "El apellido no puede estar vacío.<br>";
-        } else{
-            if(empty($dni)){// Validar DNI
-                echo "El DNI no puede estar vacío.<br>";
-            } else{
-                if(!preg_match($patronDNI, $dni)){// comprobar formato
-                    echo "El DNI no tiene un formato válido.<br>";
-                } else{
-                    echo "Todos los campos son válidos.<br>";
-                }
-            }
     }
+    if(empty($apellido)){ // comprobar si está vacío apellido
+        echo "El apellido no puede estar vacío.<br>";
+    }
+    if(empty($dni)){ // comprobar si está vacío dni
+        echo "El DNI no puede estar vacío.<br>";
+    } elseif(!preg_match($patronDNI, $dni)){ // comprobar formato dni
+        echo "El DNI no tiene un formato válido.<br>";
+    } else{
+        echo "Todos los campos son válidos.<br>";
     }
 }
 ?>
