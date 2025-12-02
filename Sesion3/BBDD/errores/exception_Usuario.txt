@@ -1,0 +1,10 @@
+Fecha: 10:52 26-11-2025 | Mensaje: Call to undefined function extraerCamposTabla() | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\prueba.php | Línea: 5 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 11:01 26-11-2025 | Mensaje: Class "Usuario" not found | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\prueba.php | Línea: 6 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 12:30 28-11-2025 | Mensaje: Call to undefined function descrifrar() | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\index.php | Línea: 55 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 12:51 28-11-2025 | Mensaje: SQLSTATE[HY000]: General error: 5 database is locked | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\db.php | Línea: 66 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 13:30 28-11-2025 | Mensaje: SQLSTATE[HY000]: General error: 5 database is locked | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\db.php | Línea: 66 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 13:35 28-11-2025 | Mensaje: SQLSTATE[HY000]: General error: 5 database is locked | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\db.php | Línea: 66 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 13:36 28-11-2025 | Mensaje: SQLSTATE[HY000]: General error: 5 database is locked | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\db.php | Línea: 66 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 13:41 28-11-2025 | Mensaje: SQLSTATE[HY000]: General error: 1 no such table: Usuario | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\db.php | Línea: 53 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 14:14 02-12-2025 | Mensaje: Unmatched '}' | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\funciones.php | Línea: 10 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 14:18 02-12-2025 | Mensaje: syntax error, unexpected variable "$correcto" | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\funciones.php | Línea: 16 | Usuario: A8Alumno07 | IP: ::1
