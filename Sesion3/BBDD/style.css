@@ -54,7 +54,7 @@ input[type="password"]:focus {
     border-color: #007bff;
 }
 
-input[type="submit"] {
+.login {
     width: 100%;
     padding: 12px;
     background-color: #007bff;
@@ -68,7 +68,7 @@ input[type="submit"] {
     margin-bottom: 15px;
 }
 
-input[type="submit"]:hover {
+.login:hover {
     background-color: #0056b3;
 }
 
@@ -149,7 +149,7 @@ select:focus {
     border-color: #007bff;
 }
 
-input[type="button"] {
+.bMOD, .bElim {
     padding: 8px 15px;
     margin: 0 5px;
     border: none;
@@ -159,24 +159,40 @@ input[type="button"] {
     transition: background-color 0.3s;
 }
 
-input[type="button"]:first-child {
+.bMOD {
     background-color: #28a745;
     color: white;
 }
 
-input[type="button"]:first-child:hover {
+.bMOD:hover {
     background-color: #218838;
 }
 
-input[type="button"]:last-child {
+.bElim  {
     background-color: #dc3545;
     color: white;
 }
 
-input[type="button"]:last-child:hover {
+.bElim:hover {
     background-color: #c82333;
 }
 
 input[type="hidden"] {
     display: none;
+}
+
+.volver{
+    padding: 8px 15px;
+    margin: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    background-color: #007bff;
+    color: white;
+}
+
+.volver:hover{
+    background-color: #0056b3;   
 }

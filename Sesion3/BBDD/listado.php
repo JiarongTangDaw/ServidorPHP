@@ -1,6 +1,26 @@
 <?php
     require_once './utils.php';
     session_start();
+
+    // Verificar si el usuario está logueado
+    if (!isset($_SESSION['username'])) {
+        header("Location: index.php");
+        exit();
+    }
+    
+    // Verificar si es administrador
+    $idRol = buscarRol($_SESSION['username']);
+    if ($idRol !== 1) {  // 1 = admin
+        header("Location: profile.php");
+        exit();
+    }
+
+    if(isset($_SESSION['mensaje'])){
+        echo "<script>
+                    alert('".$_SESSION['mensaje']."')
+                    </script>";
+        unset($_SESSION['mensaje']);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -10,14 +30,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listado Usuarios</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="./funciones.js" defer></script>
+    <script src="./funciones.js" defer></script>
 </head>
 <body>
     <h1>Listado de usuarios</h1>
     <?php
         $listaUsuarios = sacarDatosUsuarios();
     ?>
-    <form action="./listado.php" method="post" id="listado">
+    <form action="listado.php" method="post" id="listado">
         <input type="hidden" name="rol" id="rol">
         <input type="hidden" name="id" id="id">
         <table>
@@ -42,14 +62,14 @@
                             </select>
                         </td>
                         <td>
-                            <input type="button" value="Modificar" onClick ="modificar('<?= $usuario['id'] ?>')">
-                            <input type="button" value="eliminar" onClick ="eliminar('<?= $usuario['id'] ?>')">
+                            <input type="button" class="bMOD" value="Modificar" onClick ="modificar('<?= $usuario['id'] ?>')">
+                            <input type="button" class="bElim" value="eliminar" onClick ="eliminar('<?= $usuario['id'] ?>')">
                         </td>
                     </tr>
                 <?php    }} ?>
             </tbody>
         </table>
     </form>
-
+    <button class="volver" id="volverPerfil" >Volver</button>
 </body>
 </html>

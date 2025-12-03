@@ -21,19 +21,25 @@ function modificar(id) {
     
 }
 
-// function eliminar(id) {
-//    // confirmamos que el usuario quiere realizar la eliminacion
-//    let salida = confirm(`Va a eliminar el comic ${titulo}.¿Desea continuar?`);
+function eliminar(id) {
+   // confirmamos que el usuario quiere realizar la eliminacion
+   let usuario = document.getElementById('name'+id).textContent;
+   let salida = confirm(`Va a eliminar el usuario ${usuario}.¿Desea continuar?`);
 
-//    // si se acepta la eliminacion se realiza la eliminacion
-//    if(salida){// se confirma la eliminacion
-//         // dar valor al input hidden de id porque solo necesitamos saber el valor del id para realizar el delete
-//         document.getElementById('id').value = id;
+   // si se acepta la eliminacion se realiza la eliminacion
+   if(salida){// se confirma la eliminacion
+        // dar valor al input hidden de id porque solo necesitamos saber el valor del id para realizar el delete
+        document.getElementById('id').value = id;
 
-//         //cambiamos el action del formulario añadiendo una propiedad de action con valor eliminar pasando solo el id
-//         let formulario = document.getElementById('formulario');
-//         formulario.action = 'funciones.php?action=eliminar';
+        //cambiamos el action del formulario añadiendo una propiedad de action con valor eliminar pasando solo el id
+        let formulario = document.getElementById('listado');
+        formulario.action = 'funciones.php?action=eliminar';
 
-//         formulario.submit();
-//    }
-// }
+        formulario.submit();
+   }
+}
+
+let lVolver = document.getElementById('volverPerfil');
+lVolver.addEventListener('click',function(){
+    window.location.href = 'profile.php';
+})

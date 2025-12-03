@@ -82,20 +82,19 @@
         // Si es el campo 'rol', convertir el valor
         if ($campo == 'rol') {
             $valor = ($valor == 'admin') ? 1 : 2;
+            $stmt = $db->prepare("UPDATE Usuarios SET rol = ? WHERE id = ?");
+        }else{
+            $stmt = $db->prepare("UPDATE Usuarios SET password = ? WHERE id = ?");
         }
-        
-        $stmt = $db->prepare("UPDATE Usuarios SET `$campo` = ? WHERE id = ?");
-        
         $stmt->execute([$valor,$id]);
+    }
 
-        // Verificar cuántas filas se actualizaron
-        $filasAfectadas = $stmt->rowCount();
-        
-        if ($filasAfectadas > 0) {
-            return "✅ Usuario actualizado correctamente. Filas afectadas: $filasAfectadas";
-        } else {
-            return "⚠️ No se encontró el usuario con ID $id o los datos son iguales";
-        }
+    function deleteUsuario($id){
+        global $db;
+
+
+        $stmt = $db -> prepare("DELETE FROM Usuarios WHERE id = ?");
+        $stmt->execute([$id]);
     }
 
 ?>

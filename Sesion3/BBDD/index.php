@@ -65,7 +65,7 @@
         <input type="text" name="username" id="username">
         <label for="password">Contraseña:</label>
         <input type="password" name="password" id="password">
-        <input type="submit" value="Iniciar Sesion">
+        <input type="submit" class="login" value="Iniciar Sesion">
         <p>No tienes cuenta: <a href="./register.php">Crea una cuenta</a></p>
     </form>
 </body>

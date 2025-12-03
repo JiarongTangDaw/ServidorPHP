@@ -1,5 +1,7 @@
 <?php
-    require_once './utils.php';
+    require_once './db.php';
+    require_once './encriptador.php';
+    require_once './error.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $action = $_GET['action']?? '';
@@ -11,16 +13,31 @@
         
         switch ($action) {
             case 'modificar':
-                try {
-                    $salida = updateUsuario("rol",$rol,$id);
-                    echo $salida;
-                } catch (Exception $th) {
-                    echo "error";
+                if($rol != ""){
+                    updateUsuario('rol',$rol,$id);
+                    header("Location: listado.php");
+                    exit();
+                }else{
+                    updateUsuario('password',$password,$id);
+                    header("Location: profile.php");
+                    exit();
                 }
+                
+                break;
+            case 'eliminar':
+                $idRol = buscarRol($id);
+                if ($idRol == 1){
+                    $_SESSION['mensaje'] = "No se puede elimnar un administrador";
+                }else{
+                    deleteUsuario($id);
+                    $_SESSION['mensaje'] = "Usuario eliminado con exito";
+                }
+                header("Location: listado.php");
+                exit();
                 break;
             
             default:
-                # code...
+                echo "esto es default";
                 break;
         }
     }
