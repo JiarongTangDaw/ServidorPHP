@@ -2,11 +2,14 @@
     require_once './db.php';
     require_once './encriptador.php';
     require_once './error.php';
+    require_once './sesiones.php';
 
-    session_start();
+
     if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET") {
         $action = $_GET['action']?? '';
 
+        $username = $_POST['username']??"";
+        $password = $_POST['password']??"";
         $rol = $_POST['rol']??"";
         $id = $_POST['id']??"";
         $oldPassword = $_POST['oldPassword'] ?? '';
@@ -15,6 +18,43 @@
 
         
         switch ($action) {
+            case 'login':
+
+                if($username == "" || $password == ""){
+                    $mensaje = urlencode('NO PUEDE HABER CAMPOS VACIOS');
+                    header("Location: index.php?error=" . $mensaje);
+                    exit();
+                }else{
+                    $valido = validarUsername($username);
+                    $password = sanetizar($password);
+                    if(!$valido){
+                        $mensaje = urlencode('Nombre de usuario no valido');
+                        header("Location: index.php?error=" . $mensaje);
+                        exit();                        
+                    }else{
+                        $existeUsuario = existeUsuario($username);
+                        if(!$existeUsuario){
+                            $mensaje = urlencode('No existe usuario con este nombre');
+                            header("Location: index.php?error=" . $mensaje);
+                            exit();
+                        }else{
+                            $passBBDD = buscarPassUsuario($username);
+                            if(!($password == descifrar($passBBDD))){
+                                $mensaje = urlencode('Contraseña incorrecta');
+                                header("Location: index.php?error=" . $mensaje);
+                                exit();
+                            }else{
+                                crearSesion($username);
+                                header("Location: profile.php");
+                                exit();
+                            }
+                        }
+                    }
+                }
+                crearSesion($username);
+
+                break;
+
             case 'modificar':
                 updateUsuario('rol',$rol,$id);
                 $_SESSION['mensaje'] = 'Usuario modificado con exito';

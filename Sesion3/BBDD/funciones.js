@@ -1,9 +1,14 @@
+function login(){
+    let form = document.getElementById('formLogin');
+    form.action = 'funciones.php?action=login';
+    form.submit();
+}
+
 //funcion para modificar valores de un comic
 function modificar(id) {
     // sacar los valores de cada campo para la modificacion
     let rol = document.getElementById('rol'+ id).value;
 
-    //! AÑADIDO DESPUES DE PRUEBA
     if(rol == ""){ // si hay campos vacios
         alert('No puede haber campos vacios al modificar un usuario');
     }else{// no hay campos vacios

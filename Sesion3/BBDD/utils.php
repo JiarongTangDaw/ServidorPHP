@@ -3,4 +3,5 @@
     require_once './funciones.php';
     require_once './encriptador.php';
     require_once './error.php';
+    require_once './sesiones.php';
 ?>

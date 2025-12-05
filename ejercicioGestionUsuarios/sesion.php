@@ -1,23 +1,19 @@
 <?php
 
-require_once './db.php';
-require_once './encriptador.php';
-require_once './error.php';
+require_once "./models/Usuarios.php";
 
 //$config = require_once "config.php";
 //Obligatorio en todas las páginas para la página tenga acceso a la sesion del servidor
 session_start();
 
-function crearSesion($usu)
+function crearSesion(Usuario $usu)
 {
     //Creo la nueva sesion de usuario con el objeto de usuario y asi tengo todo el usuario a mano
-    $_SESSION["username"] = $usu;
+    $_SESSION["usuario"] = $usu;
     $_SESSION["login_time"] = time();
 
-    $idRol = buscarRol($usu);
-
     //GENERO UNA COKKIE PARA EL ROL, aun que no debería de ser asi porque la mandamos al front y es modificable por el usuario
-    setcookie("rol_id", $idRol);
+    setcookie("rol_id", $usu->getRolId());
     setcookie("conectado", "true");
 }
 
@@ -35,8 +31,22 @@ function borrarSesion()
 
 function comprobarSesion(): bool
 {
+    global $config;
     $salida = true;
-    $durSesion = 60;
+    $durSesion = (int)$config['sesion']['duracion_seg'];
+    // print_r("++dursesion");
+    // print_r($config);
+    // print_r($config['sesion']['duracion_seg']);
+    // print_r($durSesion);
+    // print_r("--dursesion");
+    // print_r("++login_time");
+    // print_r($_SESSION["login_time"]);
+    // print_r("--login_time");
+
+    // print_r("++time");
+    // print_r(time());
+    // print_r("--time");
+    //Esta funcion me comprueba si el usuario esta conectado en base a que haya pasado un minuto
     if ((time() - $_SESSION["login_time"]) > $durSesion) {
         //Destruyo la sesion
         borrarSesion();
