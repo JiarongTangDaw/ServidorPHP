@@ -8,3 +8,6 @@ Fecha: 13:36 28-11-2025 | Mensaje: SQLSTATE[HY000]: General error: 5 database is
 Fecha: 13:41 28-11-2025 | Mensaje: SQLSTATE[HY000]: General error: 1 no such table: Usuario | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\db.php | Línea: 53 | Usuario: A8Alumno07 | IP: ::1
 Fecha: 14:14 02-12-2025 | Mensaje: Unmatched '}' | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\funciones.php | Línea: 10 | Usuario: A8Alumno07 | IP: ::1
 Fecha: 14:18 02-12-2025 | Mensaje: syntax error, unexpected variable "$correcto" | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\funciones.php | Línea: 16 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 11:13 05-12-2025 | Mensaje: Call to undefined function validarUsername() | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\index.php | Línea: 13 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 12:31 05-12-2025 | Mensaje: SQLSTATE[HY000]: General error: 1 no such table: Usuario | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\db.php | Línea: 44 | Usuario: A8Alumno07 | IP: ::1
+Fecha: 13:07 05-12-2025 | Mensaje: Undefined constant "c" | Archivo: C:\Users\Alumno.DESKTOP-DI5KTUG\Desktop\ServidorPHP\Sesion3\BBDD\password.php | Línea: 6 | Usuario: A8Alumno07 | IP: ::1

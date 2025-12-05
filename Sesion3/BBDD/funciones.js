@@ -39,7 +39,44 @@ function eliminar(id) {
    }
 }
 
-let lVolver = document.getElementById('volverPerfil');
-lVolver.addEventListener('click',function(){
-    window.location.href = 'profile.php';
-})
+function cerrarSesion() {
+    if(confirm('¿Estás seguro de que quieres cerrar sesión?')) {
+        window.location.href = 'http://localhost/Sesion3/BBDD/funciones.php?action=logout';
+    }
+}
+
+function mostrarCambioPass() {
+    let form = document.getElementById('cambio');
+    if(form.style.display != 'none'){
+        form.style.display = 'none';
+    }else{
+        form.style.display = 'block';
+    }
+}
+
+//funcion para modificar valores de un comic
+function modificarPassword(id) {
+    // sacar los valores de cada campo para la modificacion
+    let newPass = document.getElementById('newPassword').value;
+    let newPass2 = document.getElementById('newPassword2').value;
+    let oldPass = document.getElementById('oldPassword').value;
+
+    if(oldPass == "" || newPass == "" || newPass2 == ""){ // si hay campos vacios
+        alert('No puede haber campos vacios al modificar una contraseña');
+    }else if(newPass != newPass2){
+        alert('La confirmación de la contraseña no coincide con la nueva contraseña introducida');
+    }else{// no hay campos vacios
+        // dar valor a los input hidden para enviarlos a PHP
+        document.getElementById('password').value = newPass;
+        document.getElementById('password2').value = oldPass;
+        document.getElementById('id').value = id;
+
+        //cambiamos el action del formulario añadiendo una propiedad de action con valor modificar
+        let formulario = document.getElementById('formCambioPass');
+        formulario.action = 'funciones.php?action=modificarPassword';
+
+        formulario.submit();
+    }
+
+    
+}

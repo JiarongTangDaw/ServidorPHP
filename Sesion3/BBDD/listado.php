@@ -21,6 +21,13 @@
                     </script>";
         unset($_SESSION['mensaje']);
     }
+
+    if(isset($_SESSION['error'])){
+        echo "<script>
+                    alert('".$_SESSION['error']."')
+                    </script>";
+        unset($_SESSION['error']);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -70,6 +77,6 @@
             </tbody>
         </table>
     </form>
-    <button class="volver" id="volverPerfil" >Volver</button>
+    <button class="volver" id="volverPerfil" onclick="window.location.href = 'http://localhost/Sesion3/BBDD/profile.php';">Volver</button>
 </body>
 </html>

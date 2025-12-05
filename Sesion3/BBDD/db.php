@@ -41,7 +41,7 @@
     function buscarId($name){
         global $db;
 
-        $stmt = $db -> prepare("SELECT id FROM Usuario WHERE username = ?");
+        $stmt = $db -> prepare("SELECT id FROM Usuarios WHERE username = ?");
         $stmt -> execute([$name]);
         $salida = $stmt -> fetchColumn();
         return $salida;
@@ -84,6 +84,7 @@
             $valor = ($valor == 'admin') ? 1 : 2;
             $stmt = $db->prepare("UPDATE Usuarios SET rol = ? WHERE id = ?");
         }else{
+            $valor = cifrar($valor);
             $stmt = $db->prepare("UPDATE Usuarios SET password = ? WHERE id = ?");
         }
         $stmt->execute([$valor,$id]);

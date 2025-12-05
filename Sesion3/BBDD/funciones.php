@@ -3,31 +3,29 @@
     require_once './encriptador.php';
     require_once './error.php';
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    session_start();
+    if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET") {
         $action = $_GET['action']?? '';
 
         $rol = $_POST['rol']??"";
         $id = $_POST['id']??"";
-        $password = $_POST['password'] ?? '';
+        $oldPassword = $_POST['oldPassword'] ?? '';
+        $newPassword = $_POST['newPassword'] ?? '';
+        $username = $_SESSION['username']??'';
 
         
         switch ($action) {
             case 'modificar':
-                if($rol != ""){
-                    updateUsuario('rol',$rol,$id);
-                    header("Location: listado.php");
-                    exit();
-                }else{
-                    updateUsuario('password',$password,$id);
-                    header("Location: profile.php");
-                    exit();
-                }
+                updateUsuario('rol',$rol,$id);
+                $_SESSION['mensaje'] = 'Usuario modificado con exito';
+                header("Location: listado.php");
+                exit();
                 
                 break;
             case 'eliminar':
-                $idRol = buscarRol($id);
+                $idRol = buscarRol($username);
                 if ($idRol == 1){
-                    $_SESSION['mensaje'] = "No se puede elimnar un administrador";
+                    $_SESSION['error'] = "No se puede elimnar un administrador";
                 }else{
                     deleteUsuario($id);
                     $_SESSION['mensaje'] = "Usuario eliminado con exito";
@@ -35,9 +33,28 @@
                 header("Location: listado.php");
                 exit();
                 break;
+
+            case 'modificarPassword':
+                $passBBDD = buscarPassUsuario($username);
+                if ($oldPassword != descifrar($passBBDD)){
+                    $_SESSION['error'] = "Contraseña actual incorrecta";
+                }else{
+                    updateUsuario('password',$newPassword,$id);
+                    $_SESSION['mensaje'] = "Contraseña cambiada correctamente";
+                }
+                header("Location: profile.php");
+                exit();
+                
+                break;
+            
+            case 'logout':
+                session_unset();
+                session_destroy();
+                header("Location: index.php");
+                exit();
+                break;
             
             default:
-                echo "esto es default";
                 break;
         }
     }
