@@ -47,7 +47,7 @@ function cerrarSesion() {
 
 function mostrarCambioPass() {
     let form = document.getElementById('cambio');
-    if(form.style.display != 'none'){
+    if(form.style.display == 'block'){
         form.style.display = 'none';
     }else{
         form.style.display = 'block';

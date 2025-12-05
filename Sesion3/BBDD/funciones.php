@@ -36,9 +36,11 @@
 
             case 'modificarPassword':
                 $passBBDD = buscarPassUsuario($username);
+                $oldPassword = sanetizar($oldPassword);
                 if ($oldPassword != descifrar($passBBDD)){
                     $_SESSION['error'] = "Contraseña actual incorrecta";
                 }else{
+                    $newPassword = sanetizar($newPassword);
                     updateUsuario('password',$newPassword,$id);
                     $_SESSION['mensaje'] = "Contraseña cambiada correctamente";
                 }
