@@ -34,3 +34,9 @@ function cerrarSesion() {
     form.submit();
 }
 
+function addUsuario(vieneListado){
+    let form = document.getElementById("formRegistrar");
+    form.action = 'registrar.php?action=addUsuario';
+    form.submit();
+}
+
