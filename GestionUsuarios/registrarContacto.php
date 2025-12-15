@@ -23,7 +23,7 @@
 
 <body>
     <div class="container">
-        <h1>Nuevo Usuario</h1>
+        <h1>Nuevo Contacto</h1>
 
         <form method="post" id= "formRegistrar">
 
@@ -39,30 +39,12 @@
             <label for="apellidos">Apellidos</label>
             <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" value="">
 
-            <?php
-                if ($action != 'registrar'){
-                    echo " <label for='rol'>Rol</label>
-                            <select name='rol' id='rol'>
-                                <option value ='1'selected> Admin</option>
-                                <option value ='2'> Usuario</option>
-                            </select>";
-                }
-            ?>
-
             <label for="password">Contraseña</label>
             <input type="password" id="password" name="password" placeholder="••••••••" required value="">
 
-            <button onclick="addUsuario(<?= $action ==  'registrar' ? false : true; ?>)">Crear Usuario</button>
+            <button onclick="addUsuario(<?= $action ==  'registrar' ? false : true; ?>)">Crear Contacto</button>
         </form>
-        <?php
-            $variable = "usuario";
-            if ($action == 'registrar'){
-                echo "<p>Ya tengo una cuenta: <a href='./index.php'>Inicio</a></p>";
-            }else{
-                echo "<button class='cancelar' onclick=\"navegar('$variable')\">Cancelar</button>";
-            }
-        ?>
-    </div>
+        <button class='cancelar' onclick='navegar("contacto")'>Cancelar</button>
 </body>
 
 </html>

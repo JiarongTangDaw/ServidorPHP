@@ -114,20 +114,10 @@ class Usuario
         } else {
             // Update
             $stmt = $pdo->prepare("UPDATE usuarios SET 
-                                    usuario = :usuario,
-                                    password = :password,
-                                    email = :email,
-                                    nombre = :nombre,
-                                    apellidos = :apellidos,
                                     rol_id = :rol_id
                                    WHERE usuario_id = :id");
 
             $stmt->execute([
-                ':usuario'   => $this->usuario,
-                ':password'  => password_hash($this->password. $claveEC, PASSWORD_DEFAULT),
-                ':email'     => $this->email,
-                ':nombre'    => $this->nombre,
-                ':apellidos' => $this->apellidos,
                 ':rol_id'    => $this->rol_id,
                 ':id'        => $this->usuario_id
             ]);

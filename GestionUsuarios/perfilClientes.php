@@ -1,14 +1,13 @@
 <?php
     require_once "utils.php";
-    require_once "./Usuarios.php";
+    require_once "./Clientes.php";
 
-    $listaUsuarios = Usuario::obtenerTodos($pdo);
+    $listaClientes = Cliente::obtenerTodos($pdo);
 
     //Extraigo el usuario conectado
     if (isset($_SESSION["usuario"])) {
         $usu_conectado = $_SESSION["usuario"];
         $rol_id_usuario = $usu_conectado->getRolId();
-        $idUsuario = $usu_conectado->getId();
     }
 
     $mensaje = $_GET['mensaje']?? '';
@@ -26,7 +25,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Listado de Usuarios</title>
+    <title>Listado de Clientes</title>
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
 </head>
@@ -34,55 +33,55 @@
 <body>
     <div class="tabla-contenedor">
 
-        <h1>Listado de Usuarios</h1>
-        <button class="btn cerrarsesion" onclick="cerrarSesion()">
-            Cerrar Sesion
-        </button>
-        <button class="btn cerrarsesion" onclick="navegar('cliente')">
-            Clientes
+        <h1>Listado de Clientes</h1>
+        <button class="btn cerrarsesion" onclick="navegar('usuario')">
+            Usuarios
         </button>
         <button class="btn cerrarsesion" onclick="navegar('contacto')">
             Contactos
         </button>
         <?php if ($rol_id_usuario == 1): ?>
-            <a href="./registrar.php" class="btn primary anadir">➕ Añadir Usuario</a>
+            <a href="./registrarCliente.php" class="btn primary anadir">➕ Añadir Cliente</a>
         <?php endif; ?>
     <table>
             <tr>
                 <th>ID</th>
-                <th>Usuario</th>
-                <th>Email</th>
                 <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Rol</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Email</th>
+                <th>CIF</th>
+                <th>Telefono</th>
                 <?php if ($rol_id_usuario == 1): ?>
                 <th>Acciones</th>
                 <?php endif; ?>
             </tr>
 
-            <?php foreach ($listaUsuarios as $u): ?>
+            <?php foreach ($listaClientes as $c): ?>
             <tr>
-                <td><?= $u->getId() ?></td>
-                <td><?= $u->getUsuario() ?></td>
-                <td><?= $u->getEmail() ?></td>
-                <td><?= $u->getNombre() ?></td>
-                <td><?= $u->getApellidos() ?></td>
-                <td><?= $u->getRolId() == 1 ? 'Admin' : 'Usuario' ?>
+                <td><?= $c->getId() ?></td>
+                <td><?= $c->getNombre() ?></td>
+                <td><?= $c->getApellidos() ?></td>
+                <td><?= $c->getEdad() ?></td>
+                <td><?= $c->getEmail() ?></td>
+                <td><?= $c->getCIF() ?></td>
+                <td><?= $c->getTelefono() ?></td>
                 </td>
                 <?php if ($rol_id_usuario == 1): ?>
                 <td class="acciones">
-
+                    <button class="btn editar"
+                        onclick="contactoCliente(<?= $c->getId() ?>)">
+                        Lista Contactos de Cliente
+                    </button>
 
                     <a class="btn editar"
-                        href="modificar.php?usuario_id=<?= $u->getId() ?>&listado=true">
+                        href="registrarCliente.php?cliente_id=<?= $c->getId() ?>">
                         Editar
                     </a>
-                    <?php if ($idUsuario !== $u->getId()): ?>
                     <button class="btn borrar"
-                        onclick="deleteUsuario(<?= $u->getId() ?>)">
+                        onclick="deleteCliente(<?= $c->getId() ?>)">
                         Borrar
                     </button>
-                     <?php endif; ?>
                 </td>
                 <?php endif; ?>
             </tr>
@@ -90,8 +89,8 @@
 
         </table>
     </div>
-    <form action="" method="post" id="frmEli" name="frmEli" style="visibility: hidden;">
-        <input type="hidden" name="idUsuario" id="idUsuario">
+    <form action="" method="post" id="frmEliCli" name="frmEliCli" style="visibility: hidden;">
+        <input type="hidden" name="idCliente" id="idCliente">
     </form>
 
         

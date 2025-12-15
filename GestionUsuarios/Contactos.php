@@ -16,7 +16,7 @@ class Contacto
     public function __construct($data = [])
     {
         if (!empty($data)) {
-            $this->cliente_id = $data['contacto_id'] ?? null;
+            $this->contacto_id = $data['contacto_id'] ?? null;
             $this->nombre     = $data['nombre'] ?? null;
             $this->email      = $data['email'] ?? null;
             $this->telefono   = $data['telefono'] ?? null;
@@ -110,7 +110,21 @@ class Contacto
 
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $data ? new self($data) : new Cliente();
+        return $data ? new self($data) : new Contacto();
+    }
+
+    public static function obtenerPorIdCliente($pdo, $id)
+    {
+        $stmt = $pdo->prepare("SELECT co.* FROM contactos co INNER JOIN clientes c ON c.contacto_id = co.contacto_id WHERE c.cliente_id = :id;");
+        $stmt->execute([':id' => $id]);
+
+        $contactos = [];
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $contactos[] = new self($row);
+        }
+
+        return $contactos;
     }
 
   
@@ -120,7 +134,7 @@ class Contacto
         $contactos = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $cotactos[] = new self($row);
+            $contactos[] = new self($row);
         }
 
         return $contactos;

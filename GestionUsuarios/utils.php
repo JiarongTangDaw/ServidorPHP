@@ -52,9 +52,19 @@ function comprobarPassword($password): bool
 function comprobarTelefono($tel): bool
 {
     $salida = true;
-    if ($password != "") {
+    if ($tel != "") {
         $patron = '/^(\+34|0034|34)?[ -]*(6|7|8|9)[ -]*([0-9][ -]*){8}$/';
         $salida = preg_match($patron, $tel);
+    }
+
+    return $salida;
+}
+
+function comprobarEdad($edad): bool
+{
+    $salida = true;
+    if($edad < 18 || $edad >= 100){
+        $salida = false;
     }
 
     return $salida;

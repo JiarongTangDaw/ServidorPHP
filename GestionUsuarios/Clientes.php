@@ -25,6 +25,7 @@ class Cliente
             $this->telefono   = $data['telefono'] ?? null;
             $this->apellidos  = $data['apellidos'] ?? null;
             $this->edad     = $data['edad'] ?? null;
+            $this->contacto_id     = $data['contacto_id'] ?? null;
         }
     }
 
@@ -89,6 +90,15 @@ class Cliente
         $this->edad = $edad;
     }
 
+    public function getContactoId()
+    {
+        return $this->contacto_id ?? 0;
+    }
+    public function setContactoId($id)
+    {
+        $this->contacto_id = $id;
+    }
+
 
     // ====== Métodos CRUD con PDO ======
 
@@ -96,8 +106,8 @@ class Cliente
     {
         if ($this->cliente_id === null || $this->cliente_id === 0) {
             // Insert
-            $stmt = $pdo->prepare("INSERT INTO clientes (nombre,cif, email, telefono, apellidos, edad) 
-                                   VALUES (:nombre,:cif, :email, :telefono, :apellidos, :edad)");
+            $stmt = $pdo->prepare("INSERT INTO clientes (nombre,cif, email, telefono, apellidos, edad, contacto_id) 
+                                   VALUES (:nombre,:cif, :email, :telefono, :apellidos, :edad, :contacto_id)");
 
             $stmt->execute([
                 ':nombre'   => $this->nombre,
@@ -106,6 +116,7 @@ class Cliente
                 ':telefono'    => $this->telefono,
                 ':apellidos' => $this->apellidos,
                 ':edad'    => $this->edad,
+                ':contacto_id'    => $this->contacto_id,
             ]);
 
             $this->cliente_id = $pdo->lastInsertId();
@@ -117,7 +128,8 @@ class Cliente
                                     email = :email,
                                     telefono = :telefono,
                                     apellidos = :apellidos,
-                                    edad = :edad
+                                    edad = :edad,
+                                    contacto_id = :contacto_id
                                    WHERE cliente_id = :id");
 
             $stmt->execute([
@@ -127,7 +139,8 @@ class Cliente
                 ':telefono'    => $this->telefono,
                 ':apellidos' => $this->apellidos,
                 ':edad'    => $this->edad,
-                ':id'        => $this->cliente_id
+                ':id'        => $this->cliente_id,
+                ':contacto_id'    => $this->contacto_id
             ]);
         }
     }

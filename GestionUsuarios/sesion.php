@@ -42,7 +42,7 @@ function comprobarSesion(): bool
         //Actualizo mi variable de salida
         $salida = false;
         //Le envio de nuevo al login
-        header('Location: login.php?accion=sesioncaducada');
+        header('Location: login.php?action=sesioncaducada');
     }
     return $salida;
 }

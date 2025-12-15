@@ -5,6 +5,14 @@ require_once "utils.php";
 
 //Siempre que entro en login me cargo la sesion
 borrarSesion();
+
+$mensaje = $_GET['mensaje']?? '';
+
+if($mensaje != ''){
+    echo "<script>
+        alert('" . $mensaje ."');
+    </script>";
+}
 ?>
 <!doctype html>
 <html lang="es">
