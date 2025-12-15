@@ -103,11 +103,35 @@ function modCliente(id){
 }
 
 function deleteCliente(id){
-    let conf = confirm(`¿Seguro que deseas eliminar este usuario, con id ${id}?`);
+    let conf = confirm(`¿Seguro que deseas eliminar este Cliente, con id ${id}?`);
     if(conf){
         let form = document.getElementById("frmEliCli");
         document.getElementById('idCliente').value = id;
         form.action = 'funcionesCliente.php?action=eliminar';
+        form.submit();
+    }
+    
+}
+
+function addContacto(){
+    let form = document.getElementById("formRegContacto");
+    form.action = 'funcionesContactos.php?action=addContacto';
+    form.submit();
+}
+
+function modContacto(id){
+    let form = document.getElementById("formRegContacto");
+    form.action = 'funcionesContactos.php?action=modificar';
+    document.getElementById('idContacto').value = id;
+    form.submit();
+}
+
+function deleteContacto(id){
+    let conf = confirm(`¿Seguro que deseas eliminar este Contacto, con id ${id}?`);
+    if(conf){
+        let form = document.getElementById("frmEliContacto");
+        document.getElementById('idContacto').value = id;
+        form.action = 'funcionesContactos.php?action=eliminar';
         form.submit();
     }
     

@@ -1,14 +1,18 @@
 body {
     margin: 0;
-    height: 100vh;
+    /* Usamos min-height para que si el contenido es largo, la página crezca */
+    min-height: 100vh;
+    height: auto; 
     display: flex;
+    flex-direction: column; /* Asegura que el contenido fluya verticalmente */
     align-items: center;
     justify-content: center;
     background: linear-gradient(180deg, #0f172a, #1e293b);
     font-family: Arial, sans-serif;
     color: #fff;
-    
     font-size: 1.5rem;
+    padding: 20px 0; /* Espacio arriba y abajo para que no se pegue a los bordes al hacer scroll */
+    box-sizing: border-box;
 }
 
 .container {
@@ -17,51 +21,53 @@ body {
     border-radius: 25px;
     width: 500px;
     padding: 25px;
+    max-width: 90%; /* Para pantallas móviles */
 }
 
-form{
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
 }
 
-form > input{
+form > input {
     padding: 10px;
     width: 60%;
     font-size: 1.5rem;
     border-radius: 5px;
-    border:none;
+    border: none;
 }
 
-button{
+button {
     padding: 15px;
     width: 60%;
     background-color: #264c8f;
     border-radius: 5px;
-    border:none;
+    border: none;
     color: white;
     font-size: 1.2rem;
     font-weight: bold;
+    cursor: pointer;
 }
 
-button:hover{
+button:hover {
     background-color: #08162e;
 }
 
-.cancelar{
+.cancelar {
     margin-top: 15px;
     padding: 15px;
     width: 60%;
     background-color: #eb3030;
     border-radius: 5px;
-    border:none;
+    border: none;
     color: white;
     font-size: 1.2rem;
     font-weight: bold;
 }
 
-.cancelar:hover{
+.cancelar:hover {
     background-color: #801717;
 }
 
@@ -106,28 +112,34 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Estilos para la nueva tabla */
+/* --- Estilos ajustados para la tabla y el contenedor --- */
+
 .tabla-contenedor {
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 30px;
-    max-width: 1200px;
-    width: 90%;
+    max-width: 1400px; /* Un poco más ancho para dar espacio a las columnas */
+    width: 95%; /* Ocupa casi todo el ancho disponible */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    display: grid;
-    grid-template-columns: 1fr;
+    
+    /* Clave para evitar overflow horizontal en la pantalla */
+    overflow-x: auto; 
+    display: block; /* Cambiado de grid a block para manejar mejor el scroll */
+    box-sizing: border-box;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    min-width: 800px; /* Asegura que la tabla no se aplaste demasiado */
 }
 
 th, td {
-    padding: 15px;
+    padding: 12px 10px; /* Reducido un poco el padding */
     text-align: left;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap; /* Evita que los textos como emails se partan feo */
 }
 
 th {
@@ -139,21 +151,25 @@ tr:hover {
     background-color: rgba(255, 255, 255, 0.05);
 }
 
+/* Ajustes para botones dentro de la tabla */
 .btn {
-    padding: 10px 20px;
+    padding: 8px 12px; /* Más compacto dentro de la tabla */
     border-radius: 5px;
     border: none;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s;
-    margin-top: 15px;
+    margin-top: 0; /* Quitamos margen superior innecesario en tabla */
+    font-size: 1rem;
+    display: inline-block;
 }
 
 .cerrarsesion {
     background-color: #dc3545;
     color: white;
-    top: 30px;
-    right: 30px;
+    /* Ajuste para que se vean bien como botones normales */
+    width: auto; 
+    margin: 5px;
 }
 
 .cerrarsesion:hover {
@@ -166,28 +182,28 @@ tr:hover {
     text-decoration: none;
     display: inline-block;
     margin-bottom: 20px;
-    width: 56%;
+    width: auto; /* Auto ancho para ajustarse al texto */
+    padding: 10px 20px;
 }
 
 .primary:hover {
     background-color: #1e7e34;
 }
 
-.anadir {
-    margin-top: 10px;
-}
-
 .acciones {
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    flex-wrap: wrap; /* Permite que los botones bajen de línea si no caben */
+    min-width: 200px; /* Asegura un ancho mínimo para esta columna */
 }
 
 .editar {
     background-color: #17a2b8;
     color: white;
     text-decoration: none;
-    padding: 8px 15px;
+    padding: 8px 12px;
     border-radius: 5px;
+    font-size: 0.9rem;
 }
 
 .editar:hover {
@@ -197,6 +213,9 @@ tr:hover {
 .borrar {
     background-color: #dc3545;
     color: white;
+    width: auto;
+    font-size: 0.9rem;
+    padding: 8px 12px;
 }
 
 .borrar:hover {
@@ -205,621 +224,4 @@ tr:hover {
 
 #frmEli {
     display: none;
-}
-
-
-
-/* Media Queries para Responsive Design */
-
-/* Para tablets y pantallas medianas (768px - 1024px) */
-@media screen and (max-width: 1024px) {
-    body {
-        font-size: 1.3rem;
-    }
-    
-    .container {
-        width: 90%;
-        max-width: 600px;
-        padding: 20px;
-    }
-    
-    .tabla-contenedor {
-        width: 95%;
-        padding: 20px;
-    }
-    
-    form > input,
-    button,
-    .cancelar,
-    select {
-        width: 80%;
-    }
-    
-    .primary {
-        width: 80%;
-    }
-    
-    h1 {
-        font-size: 2.2rem;
-    }
-}
-
-/* Para tablets pequeñas y móviles grandes (576px - 768px) */
-@media screen and (max-width: 768px) {
-    body {
-        font-size: 1.1rem;
-        align-items: flex-start;
-        padding: 20px 0;
-        height: auto;
-        min-height: 100vh;
-    }
-    
-    .container {
-        width: 95%;
-        padding: 15px;
-        border-radius: 15px;
-    }
-    
-    .tabla-contenedor {
-        padding: 15px;
-        border-radius: 10px;
-        overflow-x: auto;
-    }
-    
-    table {
-        min-width: 600px;
-    }
-    
-    form {
-        gap: 15px;
-    }
-    
-    form > input,
-    button,
-    .cancelar,
-    select {
-        width: 90%;
-        font-size: 1.1rem;
-        padding: 12px;
-    }
-    
-    .primary {
-        width: 90%;
-    }
-    
-    h1 {
-        font-size: 2rem;
-        margin-bottom: 20px;
-    }
-    
-    th, td {
-        padding: 12px 8px;
-        font-size: 0.95rem;
-    }
-    
-    .acciones {
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .editar, .borrar {
-        padding: 6px 10px;
-        font-size: 0.9rem;
-        text-align: center;
-    }
-}
-
-/* Para móviles pequeños (menos de 576px) */
-@media screen and (max-width: 576px) {
-    body {
-        font-size: 1rem;
-        padding: 10px 0;
-    }
-    
-    .container {
-        width: 100%;
-        margin: 10px;
-        border-radius: 10px;
-        padding: 15px 10px;
-    }
-    
-    .tabla-contenedor {
-        padding: 10px;
-        margin: 0 10px;
-    }
-    
-    h1 {
-        font-size: 1.7rem;
-        margin-bottom: 15px;
-    }
-    
-    form > input,
-    button,
-    .cancelar,
-    select {
-        width: 100%;
-        font-size: 1rem;
-        padding: 10px;
-    }
-    
-    .primary {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-    
-    .cerrarsesion {
-        position: static;
-        width: 100%;
-        margin-top: 10px;
-    }
-    
-    th, td {
-        padding: 10px 6px;
-        font-size: 0.85rem;
-    }
-    
-    .btn {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-    }
-    
-    .anadir {
-        margin-top: 5px;
-    }
-}
-
-/* Para dispositivos muy pequeños (menos de 400px) */
-@media screen and (max-width: 400px) {
-    h1 {
-        font-size: 1.5rem;
-    }
-    
-    .container {
-        padding: 10px 5px;
-    }
-    
-    th, td {
-        padding: 8px 4px;
-        font-size: 0.8rem;
-    }
-    
-    .acciones {
-        flex-direction: column;
-        gap: 3px;
-    }
-    
-    .editar, .borrar {
-        padding: 5px 8px;
-        font-size: 0.8rem;
-    }
-    
-    form > input,
-    button,
-    .cancelar,
-    select {
-        font-size: 0.9rem;
-        padding: 8px;
-    }
-}
-
-/* Para orientación landscape en móviles */
-@media screen and (max-height: 500px) and (orientation: landscape) {
-    body {
-        height: auto;
-        min-height: 100vh;
-        padding: 20px 0;
-    }
-    
-    .container {
-        margin: 20px 0;
-    }
-    
-    .tabla-contenedor {
-        max-height: 70vh;
-        overflow-y: auto;
-    }
-}
-
-/* Ajustes para pantallas muy grandes */
-@media screen and (min-width: 1600px) {
-    .container {
-        max-width: 600px;
-    }
-    
-    .tabla-contenedor {
-        max-width: 1400px;
-    }
-}
-
-/* Mejoras de accesibilidad en dispositivos táctiles */
-@media (hover: none) and (pointer: coarse) {
-    button,
-    .cancelar,
-    .btn,
-    .editar,
-    .borrar {
-        min-height: 44px;
-        min-width: 44px;
-    }
-    
-    input,
-    select {
-        min-height: 44px;
-    }
-    
-    a {
-        padding: 5px 0;
-    }
-}
-
-/* Media Queries para Laptops de pantalla pequeña (1024px - 1366px) */
-@media screen and (max-width: 1366px) and (min-width: 1024px) {
-    body {
-        font-size: 1.3rem;
-        padding: 20px;
-    }
-    
-    .container {
-        width: 80%;
-        max-width: 450px;
-        padding: 20px;
-        border-radius: 20px;
-    }
-    
-    h1 {
-        font-size: 2.2rem;
-        margin-bottom: 25px;
-    }
-    
-    form {
-        gap: 18px;
-    }
-    
-    form > input,
-    button,
-    .cancelar,
-    select {
-        width: 70%;
-        font-size: 1.3rem;
-        padding: 12px;
-    }
-    
-    .primary {
-        width: 70%;
-        font-size: 1.1rem;
-        padding: 12px;
-    }
-    
-    /* Ajustes para la tabla si es necesario */
-    .tabla-contenedor {
-        width: 85%;
-        max-width: 1000px;
-        padding: 25px;
-    }
-    
-    table {
-        font-size: 0.95rem;
-    }
-    
-    th, td {
-        padding: 12px 10px;
-    }
-}
-
-/* Media Queries específicas para laptops pequeñas HD (1280x720) */
-@media screen and (max-width: 1280px) {
-    .container {
-        width: 85%;
-        max-width: 420px;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
-    
-    form > input,
-    button,
-    .cancelar,
-    select {
-        width: 75%;
-        font-size: 1.2rem;
-        padding: 11px;
-    }
-    
-    .primary {
-        width: 75%;
-    }
-}
-
-/* Para laptops en modo ventana o con menos altura */
-@media screen and (max-height: 700px) {
-    body {
-        align-items: flex-start;
-        padding-top: 30px;
-        padding-bottom: 30px;
-        height: auto;
-        min-height: 100vh;
-    }
-    
-    .container {
-        margin: 20px auto;
-    }
-    
-    form {
-        gap: 15px;
-    }
-    
-    h1 {
-        margin-bottom: 20px;
-    }
-}
-
-/* Para cuando el viewport es más ancho que alto (modo landscape en laptops) */
-@media screen and (max-height: 600px) and (orientation: landscape) {
-    .container {
-        max-width: 400px;
-        padding: 15px;
-    }
-    
-    h1 {
-        font-size: 1.8rem;
-        margin-bottom: 15px;
-    }
-    
-    form > input,
-    button,
-    .cancelar,
-    select {
-        padding: 10px;
-        font-size: 1.1rem;
-    }
-}
-
-/* Media Queries para la tabla en laptops pequeñas (1024px - 1366px) */
-@media screen and (max-width: 1366px) and (min-width: 1024px) {
-    .tabla-contenedor {
-        width: 95%;
-        max-width: 1100px;
-        padding: 20px;
-        margin: 20px auto;
-        border-radius: 12px;
-        overflow-x: auto;
-    }
-    
-    table {
-        width: 100%;
-        min-width: 900px;
-        font-size: 0.9rem;
-    }
-    
-    th, td {
-        padding: 10px 8px;
-        font-size: 0.9rem;
-    }
-    
-    h1 {
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-    }
-    
-    /* Ajusta los botones de acción */
-    .acciones {
-        gap: 6px;
-    }
-    
-    .editar, .borrar {
-        padding: 6px 10px;
-        font-size: 0.85rem;
-    }
-    
-    /* Botón principal de añadir */
-    .primary {
-        width: 60%;
-        padding: 12px;
-        font-size: 1rem;
-        margin-bottom: 15px;
-    }
-    
-    /* Botón cerrar sesión */
-    .cerrarsesion {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-}
-
-/* Para laptops HD (1280x720) */
-@media screen and (max-width: 1280px) {
-    .tabla-contenedor {
-        max-width: 1000px;
-        padding: 15px;
-    }
-    
-    table {
-        min-width: 800px;
-        font-size: 0.85rem;
-    }
-    
-    th, td {
-        padding: 8px 6px;
-        font-size: 0.85rem;
-    }
-    
-    .primary {
-        width: 65%;
-        padding: 10px;
-        font-size: 0.9rem;
-    }
-    
-    .editar, .borrar {
-        padding: 5px 8px;
-        font-size: 0.8rem;
-    }
-    
-    /* Reduce el padding entre celdas */
-    td, th {
-        min-width: 80px;
-        max-width: 200px;
-    }
-    
-    /* Para columnas largas (como descripciones) */
-    td.larga {
-        max-width: 150px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-}
-
-/* Para cuando hay muchas columnas */
-@media screen and (max-width: 1366px) {
-    /* Si la tabla tiene más de 5 columnas, reduce más */
-    table tr th:nth-child(n+6),
-    table tr td:nth-child(n+6) {
-        display: none; /* O puedes comentar esta línea si prefieres scroll */
-    }
-    
-    /* Alternativa: muestra un indicador de que hay más columnas */
-    .tabla-contenedor {
-        position: relative;
-    }
-    
-    .tabla-contenedor::after {
-        content: "← Desplaza →";
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(38, 76, 143, 0.8);
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-        font-size: 0.8rem;
-        display: none; /* Activar si hay scroll */
-    }
-}
-
-/* Para laptops con menos altura */
-@media screen and (max-height: 768px) {
-    .tabla-contenedor {
-        max-height: 500px;
-        overflow-y: auto;
-        margin-top: 10px;
-    }
-    
-    thead {
-        position: sticky;
-        top: 0;
-        background-color: #264c8f;
-        z-index: 10;
-    }
-}
-
-/* Optimización específica para la tabla */
-@media screen and (max-width: 1366px) {
-    /* Reduce el tamaño de fuente general de la tabla */
-    .tabla-contenedor {
-        font-size: 0.9rem;
-    }
-    
-    /* Ajusta los encabezados */
-    th {
-        font-size: 0.85rem;
-        padding: 8px 5px;
-    }
-    
-    /* Ajusta las celdas de datos */
-    td {
-        font-size: 0.8rem;
-        padding: 8px 5px;
-    }
-    
-    /* Botones dentro de la tabla */
-    .btn-tabla {
-        padding: 4px 8px;
-        font-size: 0.75rem;
-        margin: 2px;
-    }
-    
-    /* Contenedor de la tabla con scroll controlado */
-    .tabla-scroll {
-        overflow-x: auto;
-        border-radius: 8px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    /* Asegura que la tabla ocupe el ancho completo */
-    table {
-        width: max-content;
-        min-width: 100%;
-    }
-}
-
-/* Versión optimizada para pantallas de 1024px */
-@media screen and (max-width: 1024px) {
-    .tabla-contenedor {
-        width: 98%;
-        margin: 10px;
-        padding: 10px;
-    }
-    
-    table {
-        min-width: 700px;
-    }
-    
-    th, td {
-        padding: 6px 4px;
-        font-size: 0.75rem;
-    }
-    
-    .primary {
-        width: 70%;
-        padding: 8px;
-        font-size: 0.85rem;
-    }
-    
-    /* Opcional: oculta columnas menos importantes */
-    .columna-opcional {
-        display: none;
-    }
-}
-
-/* Si prefieres una tabla responsive sin scroll horizontal */
-@media screen and (max-width: 1366px) {
-    /* Versión alternativa: tabla apilada para móviles */
-    .tabla-responsive {
-        display: block;
-    }
-    
-    .tabla-responsive thead {
-        display: none;
-    }
-    
-    .tabla-responsive tbody,
-    .tabla-responsive tr,
-    .tabla-responsive td {
-        display: block;
-        width: 100%;
-    }
-    
-    .tabla-responsive tr {
-        margin-bottom: 15px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        padding: 10px;
-    }
-    
-    .tabla-responsive td {
-        text-align: right;
-        padding: 5px 10px;
-        border: none;
-        position: relative;
-    }
-    
-    .tabla-responsive td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        font-weight: bold;
-        color: #2fb3b3;
-    }
 }

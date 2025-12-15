@@ -1,5 +1,5 @@
 <?php
-    require_once "utils.php";
+    require_once "./utils.php";
     require_once "./Contactos.php";
 
     $listaContactos = Contacto::obtenerTodos($pdo);
@@ -15,6 +15,12 @@
 
     if($idCliente != 0){
         $listaContactos = Contacto::obtenerPorIdCliente($pdo,$idCliente);
+    }
+
+    $mensaje = $_GET['mensaje']?? '';
+
+    if($mensaje != ''){
+        echo "<script>alert('" . str_replace("--", "\\n", $mensaje) . "')</script>";
     }
 
 ?>
@@ -37,7 +43,7 @@
             <?php if ($idCliente != 0): ?>
                 <h1>El cliente <?= $idCliente ?> no tiene contactos</h1>
                 <button class="btn cerrarsesion" onclick="navegar('cliente')">
-                    Clientes
+                    Volver
                 </button>
             <?php else: ?>
                 <h1>No hay contactos registrados</h1>
@@ -55,11 +61,8 @@
             <button class="btn cerrarsesion" onclick="navegar('cliente')">
                 Volver
             </button>
-            <button class="btn cerrarsesion" onclick="navegar('usuario')">
-                Usuarios
-            </button>
         <?php endif; ?>
-        <?php if ($rol_id_usuario == 1): ?>
+        <?php if ($rol_id_usuario == 1 && $idCliente == 0): ?>
             <a href="./registrarContacto.php" class="btn primary anadir">➕ Añadir Contacto</a>
         <?php endif; ?>
     <table>

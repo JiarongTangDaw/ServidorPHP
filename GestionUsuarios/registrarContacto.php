@@ -38,6 +38,7 @@
         <?php endif;?>
 
         <form method="post" id= "formRegContacto">
+            <input type="hidden" name="idContacto" id="idContacto">
 
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" placeholder="Nombre" required value="<?= $contacto_id != 0? $contacto->getNombre() : '' ?>">

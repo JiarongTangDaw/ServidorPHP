@@ -1,6 +1,6 @@
 <?php
     require_once './utils.php';
-    require_once './Clientes.php';
+    require_once './Contactos.php';
 
     // Obtenemos la acción del query string
     $accion = $_GET['action'] ?? '';
@@ -33,7 +33,7 @@
 
                 $mensaje = "Nuevo Contacto añadido correctamente";
 
-                header('Location: perfilContacto.php?mensaje=' . $mensaje);
+                header('Location: perfilContactos.php?mensaje=' . $mensaje);
                 exit();
 
                 break;
@@ -55,7 +55,7 @@
 
                 $mensaje = "Contacto modificado correctamente";
 
-                header('Location: perfilClientes.php?mensaje=' . $mensaje);
+                header('Location: perfilContactos.php?mensaje=' . $mensaje);
                 exit();
                 break;
 
@@ -63,7 +63,7 @@
                 $contacto = Contacto::obtenerPorId($pdo,$idContacto);
                 $contacto->eliminar($pdo);
                 $mensaje .= "Contacto " . $contacto->getId() . " eliminado correctamente";
-                header('Location: perfilClientes.php?mensaje=' . $mensaje);
+                header('Location: perfilContactos.php?mensaje=' . $mensaje);
                 exit();
                 break;
             default:
@@ -83,7 +83,7 @@
 
         $error = '';
 
-        if ($nombre == '' || $apellidos == '' || $email == '' || $telefono == '' || $cif == '' || $edad == 0) {
+        if ($nombre == '' || $apellidos == '' || $email == '' || $telefono == '' ) {
             $error = 'NO puede haber campos vacios';
         }else{
             if (!comprobarPatronEmail($email)) {
@@ -91,12 +91,6 @@
             }
             if (!comprobarTelefono($telefono)) {
                 $error .= 'Formato de telefono incorrecto--';
-            }
-            if (!comprobarEdad($edad)) {
-                $error .= 'Rango de edad introducido incorrecto--';
-            }
-            if (!comprobarDocumento($cif)) {
-                $error .= 'Formato de CIF introducido incorrecto--';
             }
         }
 
