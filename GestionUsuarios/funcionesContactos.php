@@ -10,37 +10,30 @@
         $email =  isset($_POST['email']) ? $_POST['email'] : '';
         $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
         $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : '';
-        $cif = isset($_POST['cif']) ? $_POST['cif'] : '';
         $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
-        $edad = isset($_POST['edad']) ? (int) $_POST['edad'] : 0;
-        $contacto = isset($_POST['contacto']) ? (int) $_POST['contacto'] : 0;
-        $idCliente = isset($_POST['idCliente']) ? (int) $_POST['idCliente'] : 0;
+        $idContacto = isset($_POST['idContacto']) ? (int) $_POST['idContacto'] : 0;
         
         switch ($accion) {
-            case 'addCliente':
+            case 'addContacto':
 
                 $error = validar();
 
                 if($error != ''){
-                    header('Location: registrarCliente.php?error=' . $error);
+                    header('Location: registrarContacto.php?error=' . $error);
                     exit();
                 }
 
-                $cliente = new Cliente();
-                $cliente->setNombre($nombre);
-                $cliente->setApellidos($apellidos);
-                $cliente->setEmail($email);
-                $cliente->setCIF($cif);
-                $cliente->setEdad($edad);
-                $cliente->setTelefono($telefono);
-                if($contacto != 0){
-                    $cliente->setContactoId($contacto);
-                }
-                $cliente->guardar($pdo);
+                $contacto = new Contacto();
+                $contacto->setNombre($nombre);
+                $contacto->setApellidos($apellidos);
+                $contacto->setEmail($email);
+                $contacto->setTelefono($telefono);
+                
+                $contacto->guardar($pdo);
 
-                $mensaje = "Nuevo Cliente añadido correctamente";
+                $mensaje = "Nuevo Contacto añadido correctamente";
 
-                header('Location: perfilClientes.php?mensaje=' . $mensaje);
+                header('Location: perfilContacto.php?mensaje=' . $mensaje);
                 exit();
 
                 break;
@@ -49,30 +42,27 @@
                 $error = validar();
 
                 if($error != ''){
-                    header('Location: registrarCliente.php?error=' . $error);
+                    header('Location: registrarContacto.php?error=' . $error);
                     exit();
                 }
                 
-                $cliente = Cliente::obtenerPorId($pdo,$idCliente);
-                $cliente->setNombre($nombre);
-                $cliente->setApellidos($apellidos);
-                $cliente->setEmail($email);
-                $cliente->setCIF($cif);
-                $cliente->setEdad($edad);
-                $cliente->setTelefono($telefono);
-                $cliente->setContactoId($contacto);
-                $cliente->guardar($pdo);
+                $contacto = Contacto::obtenerPorId($pdo,$idContacto);
+                $contacto->setNombre($nombre);
+                $contacto->setApellidos($apellidos);
+                $contacto->setEmail($email);
+                $contacto->setTelefono($telefono);
+                $contacto->guardar($pdo);
 
-                $mensaje = "Usuario modificado correctamente";
+                $mensaje = "Contacto modificado correctamente";
 
                 header('Location: perfilClientes.php?mensaje=' . $mensaje);
                 exit();
                 break;
 
             case 'eliminar':
-                $cliente = Cliente::obtenerPorId($pdo,$idCliente);
-                $cliente->eliminar($pdo);
-                $mensaje .= "Cliente " . $cliente->getId() . " eliminado correctamente";
+                $contacto = Contacto::obtenerPorId($pdo,$idContacto);
+                $contacto->eliminar($pdo);
+                $mensaje .= "Contacto " . $contacto->getId() . " eliminado correctamente";
                 header('Location: perfilClientes.php?mensaje=' . $mensaje);
                 exit();
                 break;

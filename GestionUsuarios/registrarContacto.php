@@ -1,7 +1,11 @@
 <?php
-    require_once "utils.php";
+    require_once "./utils.php";
+    require_once './Contactos.php';
 
-    $action = $_GET['action']??'';
+    $contacto_id = isset($_GET['contacto_id'])? $_GET['contacto_id'] : 0;
+    if($contacto_id != 0){
+        $contacto = Contacto::obtenerPorId($pdo,$contacto_id);
+    }
 
     $error = $_GET['error'] ?? '';
 
@@ -16,35 +20,44 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Nuevo Usuario</title>
+    <?php if ($contacto_id == 0):?>
+        <title>Nuevo Contacto</title>
+    <?php else:?>
+        <title>Modificar Contacto</title>
+    <?php endif;?>
     <link rel="stylesheet" href="style.css">
     <script src="./script.js" defer></script>
 </head>
 
 <body>
     <div class="container">
-        <h1>Nuevo Contacto</h1>
+        <?php if ($contacto_id == 0):?>
+            <h1>Nuevo Contacto</h1>
+        <?php else:?>
+            <h1>Modificar Contacto</h1>
+        <?php endif;?>
 
-        <form method="post" id= "formRegistrar">
-
-            <label for="usuario">Usuario</label>
-            <input type="text" name="usuario" id="usuario" placeholder = "Nombre de usuario" required value="">
-
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required value="">
+        <form method="post" id= "formRegContacto">
 
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre" required value="">
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" required value="<?= $contacto_id != 0? $contacto->getNombre() : '' ?>">
 
             <label for="apellidos">Apellidos</label>
-            <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" value="">
+            <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" value="<?= $contacto_id != 0? $contacto->getApellidos() : '' ?>">
 
-            <label for="password">Contraseña</label>
-            <input type="password" id="password" name="password" placeholder="••••••••" required value="">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required value="<?= $contacto_id != 0? $contacto->getEmail() : '' ?>">
 
-            <button onclick="addUsuario(<?= $action ==  'registrar' ? false : true; ?>)">Crear Contacto</button>
+            <label for="telefono">Telefono Español</label>
+            <input type="text" name="telefono" id="telefono" placeholder = "+34 6XX XXX XXX" required value="<?= $contacto_id != 0? $contacto->getTelefono() : '' ?>">
+
+             <?php if ($contacto_id === 0):?>
+                <button type="button" onclick="addContacto()">Crear Contacto</button>
+            <?php else:?>
+                <button type="button" onclick="modContacto(<?=$contacto->getId()?>)">Modificar Contacto</button>
+            <?php endif;?>
         </form>
-        <button class='cancelar' onclick='navegar("contacto")'>Cancelar</button>
+        <button class='cancelar' onclick="navegar('contacto')">Cancelar</button>
 </body>
 
 </html>

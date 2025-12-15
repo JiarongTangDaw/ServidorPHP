@@ -87,11 +87,11 @@
 
 
                     <a class="btn editar"
-                        href="modificar.php?contacto_id=<?= $co->getId() ?>&listado=true">
+                        href="registrarContacto.php?contacto_id=<?= $co->getId() ?>">
                         Editar
                     </a>
                     <button class="btn borrar"
-                        onclick="deleteUsuario(<?= $co->getId() ?>)">
+                        onclick="deleteContacto(<?= $co->getId() ?>)">
                         Borrar
                     </button>
                 </td>

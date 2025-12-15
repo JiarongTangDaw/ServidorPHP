@@ -63,7 +63,7 @@
                 $cliente->setContactoId($contacto);
                 $cliente->guardar($pdo);
 
-                $mensaje = "Usuario modificado correctamente";
+                $mensaje = "Cliente modificado correctamente";
 
                 header('Location: perfilClientes.php?mensaje=' . $mensaje);
                 exit();
