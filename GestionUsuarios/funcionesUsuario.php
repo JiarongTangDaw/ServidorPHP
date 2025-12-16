@@ -1,7 +1,7 @@
 <?php
 
 //Me traigo el fichero que tiene todas las librerias básicas del proyecto
-require_once "utils.php";
+require_once "./utils.php";
 
 // Obtenemos la acción del query string
 $accion = $_GET['action'] ?? '';
