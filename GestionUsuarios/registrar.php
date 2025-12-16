@@ -52,7 +52,7 @@
             <label for="password">Contraseña</label>
             <input type="password" id="password" name="password" placeholder="••••••••" required value="">
 
-            <button onclick="addUsuario(<?= $action ==  'registrar' ? false : true; ?>)">Crear Usuario</button>
+            <button onclick="addUsuario(<?= $action ==  'registrar' ? 'false' : 'true'; ?>)">Crear Usuario</button>
         </form>
         <?php
             $variable = "usuario";
