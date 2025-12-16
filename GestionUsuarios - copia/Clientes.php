@@ -1,0 +1,178 @@
+<?php
+
+//Incluyo el control de errores
+require_once("./error.php");
+
+//Siempre esta bien modelar las clases
+//Modelado de clase de usuario
+class Cliente
+{
+    private $cliente_id;
+    private $nombre;
+    private $cif;
+    private $email;
+    private $telefono;
+    private $apellidos;
+    private $edad;
+
+    public function __construct($data = [])
+    {
+        if (!empty($data)) {
+            $this->cliente_id = $data['cliente_id'] ?? null;
+            $this->nombre     = $data['nombre'] ?? null;
+            $this->cif    = $data['cif'] ?? null;
+            $this->email      = $data['email'] ?? null;
+            $this->telefono   = $data['telefono'] ?? null;
+            $this->apellidos  = $data['apellidos'] ?? null;
+            $this->edad     = $data['edad'] ?? null;
+            $this->contacto_id     = $data['contacto_id'] ?? null;
+        }
+    }
+
+    // ====== Getters y Setters ======
+
+    public function getId()
+    {
+        return $this->cliente_id ?? 0;
+    }
+
+    public function getNombre()
+    {
+        return $this->nombre ?? '';
+    }
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    public function getCIF()
+    {
+        return ($this->cif ?? '');
+    }
+    public function setCIF($cif)
+    {
+        $this->cif = $cif;
+    }
+
+    public function getEmail()
+    {
+        return $this->email ?? '';
+    }
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    public function getTelefono()
+    {
+        return $this->telefono ?? '';
+    }
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+    }
+
+    public function getApellidos()
+    {
+        return $this->apellidos ?? '';
+    }
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;
+    }
+
+    public function getEdad()
+    {
+        return $this->edad ?? 0;
+    }
+    public function setEdad($edad)
+    {
+        $this->edad = $edad;
+    }
+
+    public function getContactoId()
+    {
+        return $this->contacto_id ?? 0;
+    }
+    public function setContactoId($id)
+    {
+        $this->contacto_id = $id;
+    }
+
+
+    // ====== Métodos CRUD con PDO ======
+
+    public function guardar($pdo)
+    {
+        if ($this->cliente_id === null || $this->cliente_id === 0) {
+            // Insert
+            $stmt = $pdo->prepare("INSERT INTO clientes (nombre,cif, email, telefono, apellidos, edad, contacto_id) 
+                                   VALUES (:nombre,:cif, :email, :telefono, :apellidos, :edad, :contacto_id)");
+
+            $stmt->execute([
+                ':nombre'   => $this->nombre,
+                ':cif'  => $this->cif,
+                ':email'     => $this->email,
+                ':telefono'    => $this->telefono,
+                ':apellidos' => $this->apellidos,
+                ':edad'    => $this->edad,
+                ':contacto_id'    => $this->contacto_id,
+            ]);
+
+            $this->cliente_id = $pdo->lastInsertId();
+        } else {
+            // Update
+            $stmt = $pdo->prepare("UPDATE clientes SET 
+                                    nombre = :nombre,
+                                    cif = :cif,
+                                    email = :email,
+                                    telefono = :telefono,
+                                    apellidos = :apellidos,
+                                    edad = :edad,
+                                    contacto_id = :contacto_id
+                                   WHERE cliente_id = :id");
+
+            $stmt->execute([
+                ':nombre'   => $this->nombre,
+                ':cif'  => $this->cif,
+                ':email'     => $this->email,
+                ':telefono'    => $this->telefono,
+                ':apellidos' => $this->apellidos,
+                ':edad'    => $this->edad,
+                ':id'        => $this->cliente_id,
+                ':contacto_id'    => $this->contacto_id
+            ]);
+        }
+    }
+
+    public static function obtenerPorId($pdo, $id)
+    {
+        $stmt = $pdo->prepare("SELECT * FROM clientes WHERE cliente_id = :id");
+        $stmt->execute([':id' => $id]);
+
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $data ? new self($data) : new Cliente();
+    }
+
+  
+    public static function obtenerTodos($pdo)
+    {
+        $stmt = $pdo->query("SELECT * FROM clientes");
+        $clientes = [];
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $clientes[] = new self($row);
+        }
+
+        return $clientes;
+    }
+
+    public function eliminar($pdo)
+    {
+        if ($this->cliente_id != null) {
+            $stmt = $pdo->prepare("DELETE FROM clientes WHERE cliente_id = :id");
+            $stmt->execute([':id' => $this->cliente_id]);
+        }
+    }
+}

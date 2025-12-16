@@ -1,0 +1,227 @@
+body {
+    margin: 0;
+    /* Usamos min-height para que si el contenido es largo, la página crezca */
+    min-height: 100vh;
+    height: auto; 
+    display: flex;
+    flex-direction: column; /* Asegura que el contenido fluya verticalmente */
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #0f172a, #1e293b);
+    font-family: Arial, sans-serif;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 20px 0; /* Espacio arriba y abajo para que no se pegue a los bordes al hacer scroll */
+    box-sizing: border-box;
+}
+
+.container {
+    text-align: center;
+    background-color: #526b92;
+    border-radius: 25px;
+    width: 500px;
+    padding: 25px;
+    max-width: 90%; /* Para pantallas móviles */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+form > input {
+    padding: 10px;
+    width: 60%;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    padding: 15px;
+    width: 60%;
+    background-color: #264c8f;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #08162e;
+}
+
+.cancelar {
+    margin-top: 15px;
+    padding: 15px;
+    width: 60%;
+    background-color: #eb3030;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.cancelar:hover {
+    background-color: #801717;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+select {
+    width: 60%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 2px solid #475569;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+option {
+    background-color: #1e293b;
+    color: #f8fafc;
+    padding: 10px;
+}
+
+/* Enlaces */
+a {
+    color: #2fb3b3;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- Estilos ajustados para la tabla y el contenedor --- */
+
+.tabla-contenedor {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 1400px; /* Un poco más ancho para dar espacio a las columnas */
+    width: 95%; /* Ocupa casi todo el ancho disponible */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    
+    /* Clave para evitar overflow horizontal en la pantalla */
+    overflow-x: auto; 
+    display: block; /* Cambiado de grid a block para manejar mejor el scroll */
+    box-sizing: border-box;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    min-width: 800px; /* Asegura que la tabla no se aplaste demasiado */
+}
+
+th, td {
+    padding: 12px 10px; /* Reducido un poco el padding */
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    white-space: nowrap; /* Evita que los textos como emails se partan feo */
+}
+
+th {
+    background-color: rgba(38, 76, 143, 0.7);
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Ajustes para botones dentro de la tabla */
+.btn {
+    padding: 8px 12px; /* Más compacto dentro de la tabla */
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 0; /* Quitamos margen superior innecesario en tabla */
+    font-size: 1rem;
+    display: inline-block;
+}
+
+.cerrarsesion {
+    background-color: #dc3545;
+    color: white;
+    /* Ajuste para que se vean bien como botones normales */
+    width: auto; 
+    margin: 5px;
+}
+
+.cerrarsesion:hover {
+    background-color: #a71d2a;
+}
+
+.primary {
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 20px;
+    width: auto; /* Auto ancho para ajustarse al texto */
+    padding: 10px 20px;
+}
+
+.primary:hover {
+    background-color: #1e7e34;
+}
+
+.acciones {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap; /* Permite que los botones bajen de línea si no caben */
+    min-width: 200px; /* Asegura un ancho mínimo para esta columna */
+}
+
+.editar {
+    background-color: #17a2b8;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.editar:hover {
+    background-color: #117a8b;
+}
+
+.borrar {
+    background-color: #dc3545;
+    color: white;
+    width: auto;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+}
+
+.borrar:hover {
+    background-color: #a71d2a;
+}
+
+#frmEli {
+    display: none;
+}
