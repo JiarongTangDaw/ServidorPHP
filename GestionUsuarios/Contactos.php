@@ -90,7 +90,7 @@ class Contacto
                                     nombre = :nombre,
                                     email = :email,
                                     telefono = :telefono,
-                                    apellidos = :apellidos,
+                                    apellidos = :apellidos
                                    WHERE contacto_id = :id");
 
             $stmt->execute([

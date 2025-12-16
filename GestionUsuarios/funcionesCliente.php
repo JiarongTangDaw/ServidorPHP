@@ -49,7 +49,7 @@
                 $error = validar();
 
                 if($error != ''){
-                    header('Location: registrarCliente.php?error=' . $error);
+                    header('Location: registrarCliente.php?error=' . $error . '&cliente_id=' . $idCliente );
                     exit();
                 }
                 
@@ -65,7 +65,7 @@
 
                 $mensaje = "Cliente modificado correctamente";
 
-                header('Location: perfilClientes.php?mensaje=' . $mensaje);
+                header('Location: perfilClientes.php?mensaje=' . $mensaje );
                 exit();
                 break;
 

@@ -19,7 +19,7 @@
                 $error = validar();
 
                 if($error != ''){
-                    header('Location: registrarContacto.php?error=' . $error);
+                    header('Location: registrarContacto.php?error=' . $error );
                     exit();
                 }
 
@@ -42,7 +42,7 @@
                 $error = validar();
 
                 if($error != ''){
-                    header('Location: registrarContacto.php?error=' . $error);
+                    header('Location: registrarContacto.php?error=' . $error . '&contacto_id=' . $idContacto);
                     exit();
                 }
                 
