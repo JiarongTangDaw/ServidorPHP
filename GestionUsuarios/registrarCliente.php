@@ -3,7 +3,6 @@
     require_once './Contactos.php';
     require_once './Clientes.php';
 
-    $listaContactos = Contacto::obtenerTodos($pdo);
 
     $cliente_id = isset($_GET['cliente_id'])? $_GET['cliente_id'] : 0;
     if($cliente_id != 0){

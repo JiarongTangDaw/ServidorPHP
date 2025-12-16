@@ -8,7 +8,7 @@
     if (isset($_SESSION["usuario"])) {
         $usu_conectado = $_SESSION["usuario"];
         $rol_id_usuario = $usu_conectado->getRolId();
-        $idUsuario = $usu_conectado->getId();
+        $idUsuarioConectado = $usu_conectado->getId();
     }
 
     $mensaje = $_GET['mensaje']?? '';
@@ -77,7 +77,7 @@
                         href="modificar.php?usuario_id=<?= $u->getId() ?>&listado=true">
                         Editar
                     </a>
-                    <?php if ($idUsuario !== $u->getId()): ?>
+                    <?php if ($idUsuarioConectado !== $u->getId()): ?>
                     <button class="btn borrar"
                         onclick="deleteUsuario(<?= $u->getId() ?>)">
                         Borrar
