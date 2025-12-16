@@ -1,11 +1,15 @@
 <?php
+    // Incluye las utilidades básicas
     require_once "./utils.php";
 
+    // La variable 'action' determina si es un registro público ('registrar') o desde el panel de admin
     $action = $_GET['action']??'';
 
+    // Muestra errores si vienen de la URL
     $error = $_GET['error'] ?? '';
 
     if($error != ''){
+        // Reemplaza los separadores '--' por saltos de línea para la alerta
         echo "<script>alert('" . str_replace("--", "\\n", $error) . "')</script>";
     }
 ?>
@@ -40,6 +44,7 @@
             <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" value="">
 
             <?php
+                // El campo de Rol solo se muestra si NO es un registro público (es decir, viene del Admin)
                 if ($action != 'registrar'){
                     echo " <label for='rol'>Rol</label>
                             <select name='rol' id='rol'>
@@ -55,10 +60,13 @@
             <button onclick="addUsuario(<?= $action ==  'registrar' ? 'false' : 'true'; ?>)">Crear Usuario</button>
         </form>
         <?php
-            $variable = "usuario";
+            // Botones de navegación condicional
+            $variable = "usuario"; // Destino para el botón Cancelar
             if ($action == 'registrar'){
+                // Si es registro público, muestra enlace a Inicio
                 echo "<p>Ya tengo una cuenta: <a href='./index.php'>Inicio</a></p>";
             }else{
+                // Si es desde panel Admin, muestra botón de Cancelar/Volver
                 echo "<button class='cancelar' onclick=\"navegar('$variable')\">Cancelar</button>";
             }
         ?>

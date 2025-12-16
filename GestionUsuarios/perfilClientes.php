@@ -1,18 +1,23 @@
 <?php
+    // Incluye utilidades y la clase Cliente
     require_once "./utils.php";
     require_once "./Clientes.php";
 
+    // Obtiene todos los clientes de la BD
     $listaClientes = Cliente::obtenerTodos($pdo);
 
-    //Extraigo el usuario conectado
+    // Extrae el usuario conectado y su rol para control de permisos
+    $rol_id_usuario = 0; // Rol por defecto
     if (isset($_SESSION["usuario"])) {
         $usu_conectado = $_SESSION["usuario"];
         $rol_id_usuario = $usu_conectado->getRolId();
     }
 
+    // Muestra alertas (mensajes de éxito/error) si existen en la URL
     $mensaje = $_GET['mensaje']?? '';
 
     if($mensaje != ''){
+        // Reemplaza los separadores '--' por saltos de línea para la alerta
         echo "<script>alert('" . str_replace("--", "\\n", $mensaje) . "')</script>";
     }
 
@@ -43,11 +48,12 @@
         <?php if ($rol_id_usuario == 1): ?>
             <a href="./registrarCliente.php" class="btn primary anadir">➕ Añadir Cliente</a>
         <?php endif; ?>
-    <table>
+
+        <table>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
+                <th>Apellidos</th>
                 <th>Edad</th>
                 <th>Email</th>
                 <th>CIF</th>
