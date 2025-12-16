@@ -7,6 +7,11 @@ require_once "./utils.php";
 $accion = $_GET['action'] ?? '';
 $list = $_GET['listado'] ?? false;
 
+    //Extraigo el usuario conectado
+    if (isset($_SESSION["usuario"])) {
+        $usu_conectado = $_SESSION["usuario"];
+        $idUsuarioConectado = $usu_conectado->getId();
+    }
 
 // Verificamos si se ha enviado el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -78,7 +78,12 @@
                  <button onclick="addUsuario(<?= $listado ?>)">Crear Usuario</button>
             <?php endif;?>
         </form>
-       <button class='cancelar' onclick="navegar('usuario')">Cancelar</button>
+        <?php if ($usuario_id != 0):?>
+            <button class='cancelar' onclick="navegar('usuario')">Cancelar</button>
+        <?php else:?>
+            <p>Ya tengo una cuenta: <a href='./index.php'>Inicio</a></p>
+        <?php endif;?>
+       
     </div>
 </body>
 

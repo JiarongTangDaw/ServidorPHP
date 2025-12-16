@@ -6,19 +6,13 @@ function login() {
 
 function registrar() {
     let form = document.getElementById("frmInicio");
-    form.action = 'registrar.php?action=registrar';
+    form.action = 'prueba.php';
     form.submit();
 }
 
 function iniciarSesion(){
     let form = document.getElementById("formLogin");
     form.action = "funcionesUsuario.php?action=login";
-    form.submit();
-}
-
-function addUsuario(){
-    let form = document.getElementById("formRegistrar");
-    form.action = "acceder.php?action=registrar";
     form.submit();
 }
 
@@ -55,7 +49,7 @@ function addUsuario(vieneListado){
     if(vieneListado){
         qList = "&listado=true";
     }
-    form.action = 'funcionesUsuario.php?action=addUsuario'+ qList;
+    form.action = 'prueba.php?action=addUsuario'+ qList;
     form.submit();
 }
 
