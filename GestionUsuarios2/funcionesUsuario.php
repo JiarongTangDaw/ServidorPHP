@@ -40,9 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if($error != ''){
                 if ($list) {
-                    header('Location: registrar.php?error=' . $error);
+                    header('Location: prueba.php?error=' . $error . '&listado=true');
                 }else{
-                    header('Location: registrar.php?action=registrar&error=' . $error);
+                    header('Location: prueba.php?error=' . $error);
                 }
                 exit();
             }
@@ -69,15 +69,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         case 'modificar':
             $user = Usuario::obtenerPorId($pdo,$idUsuario);
-            $mensaje = procesarModificar($user);
-            if($rol === $user->getRolId()){
-                $mensaje .= "No se ha realizado ninguna modificacion--";
-            }else{
+            $error = procesarModificar($user);
+            if($error != ''){
+                header('Location: prueba.php?error=' . $error . '&usuario_id=' . $idUsuario);
+                exit();
+            }
+            $mensaje = '';
+            if($idUsuarioConectado !== $user->getId()){
                 $user->setRolId($rol);
                 $user->guardar($pdo);
                 $mensaje .= "Rol de usuario modificado correctamente ";
+            }else{
+                $user->setEmail($email);
+                $user->setNombre($nombre);
+                $user->setApellidos($apellidos);
+                $user->setUsuario($usuario);
+                if ($password != '') {
+                    $user->setPassword($password);
+                }
+                $user->setRolId($rol);
+                $mensaje .= "Usuario modificado correctamente ";
             }
-
+            $user->guardar($pdo);
             header('Location: perfilUsuario.php?mensaje=' . $mensaje);
             exit();
             break;
@@ -150,13 +163,37 @@ function procesarModificar(Usuario $user){
     global $email;
     global $nombre;
     global $apellidos;
-    
-    $mensaje ='';
+    global $password;
+    global $idUsuarioConectado;
 
-    if ($usuario != $user->getUsuario() || $email != $user->getEmail() || $nombre != $user->getNombre() || $apellidos != $user->getApellidos()) {
-        $mensaje = "Solo se puede modificar el campo rol--";
+    $error ='';
+
+    if( $idUsuarioConectado != $user->getId() ){
+        if ($usuario != $user->getUsuario() || $email != $user->getEmail() || $nombre != $user->getNombre() || $apellidos != $user->getApellidos()) {
+            $error = "Solo se puede modificar el campo rol--";
+        }
+    }else{
+        if ($usuario == "" || $email == "" || $nombre == "" || $apellidos == "" ) {
+            $error = "Debe rellenar todos los campos para modificar usuario";
+        }else{
+            if(!comprobarPatronEmail($email)){
+                $error .= "La estructura del email introduciodo no es correcto--";
+            }
+
+            if(!comprobarPassword($password) && $password != ''){
+                $error .= "La estructura de la contraseña es incorrecto: Debe tener minimo 8 digitos, minimo una letra en mayuscula, minimo una letra en minuscula, minimo un numero y minimo un caracter especial--";
+            }
+        }
     }
 
-    return $mensaje;
+    return $error;
+    
+    // $mensaje ='';
+
+    // if ($usuario != $user->getUsuario() || $email != $user->getEmail() || $nombre != $user->getNombre() || $apellidos != $user->getApellidos()) {
+    //     $mensaje = "Solo se puede modificar el campo rol--";
+    // }
+
+    // return $mensaje;
 }
 

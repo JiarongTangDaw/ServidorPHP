@@ -74,7 +74,7 @@
 
 
                     <a class="btn editar"
-                        href="modificar.php?usuario_id=<?= $u->getId() ?>&listado=true">
+                        href="prueba.php?usuario_id=<?= $u->getId() ?>&listado=true">
                         Editar
                     </a>
                     <?php if ($idUsuarioConectado !== $u->getId()): ?>

@@ -44,12 +44,12 @@ function cerrarSesion() {
 }
 
 function addUsuario(vieneListado){
-    let form = document.getElementById("formRegistrar");
+    let form = document.getElementById("formModificar");
     let qList = "";
     if(vieneListado){
         qList = "&listado=true";
     }
-    form.action = 'prueba.php?action=addUsuario'+ qList;
+    form.action = 'funcionesUsuario.php?action=addUsuario'+ qList;
     form.submit();
 }
 

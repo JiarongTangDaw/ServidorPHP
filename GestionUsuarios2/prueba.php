@@ -4,7 +4,7 @@
 
 
     $usuario_id = isset($_GET['usuario_id'])? $_GET['usuario_id'] : 0;
-    $listado = isset($_GET['listado'])? $_GET['listado'] : false;
+    $listado = isset($_GET['listado'])? (boolean)$_GET['listado'] : false;
     if($usuario_id != 0){
         $user = Usuario::obtenerPorId($pdo,$usuario_id);
     }
@@ -12,6 +12,8 @@
         $usu_conectado = $_SESSION["usuario"];
         $idUsuarioConectado = $usu_conectado->getId();
     }
+
+    $user = Usuario::obtenerPorId($pdo,$usuario_id) ?? new Usuario();
 
     $error = $_GET['error'] ?? '';
 
@@ -73,9 +75,9 @@
             <?php endif;?>
 
             <?php if ($usuario_id != 0):?>
-                <button onclick="modUsuario(<?=$user->getId()?>)">Modificar Usuario</button>
+                <button type='button' onclick="modUsuario(<?=$user->getId()?>)">Modificar Usuario</button>
             <?php else:?>
-                 <button onclick="addUsuario(<?= $listado ?>)">Crear Usuario</button>
+                 <button type='button' onclick="addUsuario(<?= $listado? 'true' : 'false' ?>)">Crear Usuario</button>
             <?php endif;?>
         </form>
         <?php if ($usuario_id != 0):?>
