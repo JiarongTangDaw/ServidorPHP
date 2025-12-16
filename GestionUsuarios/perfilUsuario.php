@@ -1,5 +1,5 @@
 <?php
-    require_once "utils.php";
+    require_once "./utils.php";
     require_once "./Usuarios.php";
 
     $listaUsuarios = Usuario::obtenerTodos($pdo);

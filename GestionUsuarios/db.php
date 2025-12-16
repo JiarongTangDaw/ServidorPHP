@@ -1,6 +1,6 @@
 <?php
 //Me traigo el fichero que tiene todas las librerias básicas del proyecto
-require_once "utils.php";
+require_once "./utils.php";
 class BaseDatos
 {
     protected $pdo; //Conexion global de la db

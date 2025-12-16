@@ -1,7 +1,7 @@
 <?php
 
 //Me traigo el fichero que tiene todas las librerias básicas del proyecto
-require_once "utils.php";
+require_once "./utils.php";
 
 //Siempre que entro en login me cargo la sesion
 borrarSesion();
