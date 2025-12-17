@@ -1,13 +1,15 @@
 <?php
 
-//Me traigo el fichero que tiene todas las librerias básicas del proyecto
+// Me traigo el fichero que tiene todas las librerias básicas del proyecto (incluye utils y sesion)
 require_once "./utils.php";
 
-//Siempre que entro en login me cargo la sesion
+// Siempre que se entra en la página de inicio, se fuerza el cierre de sesión existente
 borrarSesion();
 
+// Obtiene un mensaje de la URL si existe (ej. mensaje de cierre de sesión exitoso)
 $mensaje = $_GET['mensaje']?? '';
 
+// Si hay mensaje, lo muestra en una alerta de JavaScript
 if($mensaje != ''){
     echo "<script>
         alert('" . $mensaje ."');

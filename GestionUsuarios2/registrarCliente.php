@@ -3,16 +3,23 @@
     require_once './Contactos.php';
     require_once './Clientes.php';
 
+    // Obtener todos los contactos para llenar el desplegable (select)
     $listaContactos = Contacto::obtenerTodos($pdo);
 
+    // Verificamos si hay un ID en la URL. 
+    // Si hay ID (!= 0), es modo EDICIÓN. Si no, es modo CREACIÓN.
     $cliente_id = isset($_GET['cliente_id'])? $_GET['cliente_id'] : 0;
+    
     if($cliente_id != 0){
+        // Si editamos, cargamos los datos del cliente de la BD
         $cliente = Cliente::obtenerPorId($pdo,$cliente_id);
     }
 
+    // Gestión de errores devueltos por la validación
     $error = $_GET['error'] ?? '';
 
     if($error != ''){
+        // Muestra alerta JS formateando los saltos de línea
         echo "<script>alert('" . str_replace("--", "\\n", $error) . "')</script>";
     }
 ?>
@@ -80,5 +87,4 @@
        <button class='cancelar' onclick="navegar('cliente')">Cancelar</button>
     </div>
 </body>
-
 </html>

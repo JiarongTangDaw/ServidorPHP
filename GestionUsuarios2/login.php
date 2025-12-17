@@ -1,22 +1,25 @@
 <?php
-//Incluyo mi clases necesarias
+// Incluyo las clases necesarias
 require_once "./Usuarios.php";
 require_once "./Roles.php";
 
-//Me traigo el fichero que tiene todas las librerias básicas del proyecto
+// Me traigo el fichero que tiene todas las librerias básicas del proyecto (incluye utils, sesion, etc.)
 require_once "./utils.php";
 
-//Siempre que entro en login me cargo la sesion
+// Siempre que se entra en login se borra la sesión actual
 borrarSesion();
 
+// Obtiene un mensaje de error de la URL
 $error = $_GET['error']?? '';
 
+// Si hay error, lo muestra en una alerta de JavaScript
 if($error != ""){
     echo "<script>
         alert('" . $error ."');
     </script>";
 }
 
+// Comprueba si la sesión ha caducado (mensaje especial)
 $action = $_GET['action']??'';
 if($action == "sesioncaducada"){
     echo "<script>
@@ -45,12 +48,12 @@ if($action == "sesioncaducada"){
             <input type="text" id="usuario" name="usuario" placeholder="Nombre de usuario"  >
 
             <label for="password">Contraseña</label>
-            <input type="password" id="password" name="password" placeholder="••••••••"  value="">
-            
+            <input type="password" id="password" name="password" placeholder="••••••••" >
+
             <button onclick="iniciarSesion()">Iniciar Sesion</button>
         </form>
-
-        <p>No tengo una cuenta: <a href="./index.php">Inicio</a></p>
+        <p>No tengo una cuenta: <a href='./registrar.php?action=registrar'>Crear nuevo usuario</a></p>
+        <p>Volver: <a href='./index.php'>Inicio</a></p>
     </div>
 </body>
 

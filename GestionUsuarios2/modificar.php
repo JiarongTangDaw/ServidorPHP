@@ -1,11 +1,16 @@
 <?php
+    // Incluye las utilidades básicas
     require_once './utils.php';
+    // Incluye la clase Usuario
     require_once './Usuarios.php';
 
+    // Obtiene el ID del usuario a modificar desde la URL
     $usuario_id =(int) $_GET['usuario_id']?? 0;
 
+    // Carga el objeto Usuario de la base de datos para pre-rellenar el formulario
     $user = Usuario::obtenerPorId($pdo, $usuario_id);
 
+    // Muestra errores si vienen de la URL
     $error = $_GET['error']?? '';
 
     if($error != ""){
@@ -55,8 +60,7 @@
 
             <button onclick="modUsuario(<?=$user->getId()?>)">Modificar Usuario</button>
         </form>
-       
-        <button class='cancelar' onclick="navegar()">Cancelar</button>
+        <button class='cancelar' onclick="navegar('usuario')">Cancelar</button>
     </div>
 </body>
 

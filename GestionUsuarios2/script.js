@@ -1,21 +1,32 @@
+/* * Funciones de navegación y envío de formularios.
+ * La lógica general es:
+ * 1. Capturar el formulario por su ID.
+ * 2. Asignar la ruta (action) y parámetros GET correspondientes.
+ * 3. Hacer submit del formulario.
+ */
+
+// Redirige al script de login
 function login() {
     let form = document.getElementById("frmInicio");
     form.action = 'login.php';
     form.submit();
 }
 
+// Redirige a la página de registro
 function registrar() {
     let form = document.getElementById("frmInicio");
-    form.action = 'prueba.php';
+    form.action = 'registrar.php?action=registrar';
     form.submit();
 }
 
+// Envía credenciales para procesar el inicio de sesión
 function iniciarSesion(){
     let form = document.getElementById("formLogin");
     form.action = "funcionesUsuario.php?action=login";
     form.submit();
 }
 
+// Switch para menú de navegación principal
 function navegar(destino){
     switch (destino) {
         case 'usuario':
@@ -34,17 +45,18 @@ function navegar(destino){
             window.location.href = "./login.php";
             break;
     }
-    
 }
 
+// Cierra la sesión mediante formulario oculto
 function cerrarSesion() {
     let form = document.getElementById("frmEli");
     form.action = `funcionesUsuario.php?action=cerrarsesion`;
     form.submit();
 }
 
+// Añade usuario distinguiendo si viene de un listado (admin)
 function addUsuario(vieneListado){
-    let form = document.getElementById("formModificar");
+    let form = document.getElementById("formRegistrar");
     let qList = "";
     if(vieneListado){
         qList = "&listado=true";
@@ -53,6 +65,7 @@ function addUsuario(vieneListado){
     form.submit();
 }
 
+// Prepara el formulario para Modificar Usuario (inyecta ID)
 function modUsuario(id){
     let form = document.getElementById("formModificar");
     document.getElementById('idUsuario').value = id;
@@ -60,6 +73,7 @@ function modUsuario(id){
     form.submit();
 }
 
+// Elimina usuario con confirmación previa (alerta JS)
 function deleteUsuario(id){
     let conf = confirm(`¿Seguro que deseas eliminar este usuario, con id ${id}?`);
     if(conf){
@@ -68,9 +82,9 @@ function deleteUsuario(id){
         form.action = 'funcionesUsuario.php?action=eliminar';
         form.submit();
     }
-    
 }
 
+// Redirecciones simples
 function perfilClientes() {
     window.location.href = "./perfilClientes.php";
 }
@@ -79,9 +93,12 @@ function perfilContactos() {
     window.location.href = "./perfilContactos.php";
 }
 
+// Filtra contactos por ID de cliente
 function contactoCliente(idCliente) {
     window.location.href = "./perfilContactos.php?idCliente=" + idCliente;
 }
+
+// --- CLIENTES ---
 
 function addCliente(){
     let form = document.getElementById("formRegCliente");
@@ -92,7 +109,7 @@ function addCliente(){
 function modCliente(id){
     let form = document.getElementById("formRegCliente");
     form.action = 'funcionesCliente.php?action=modificar';
-    document.getElementById('idCliente').value = id;
+    document.getElementById('idCliente').value = id; // Inyecta ID en hidden input
     form.submit();
 }
 
@@ -104,8 +121,9 @@ function deleteCliente(id){
         form.action = 'funcionesCliente.php?action=eliminar';
         form.submit();
     }
-    
 }
+
+// --- CONTACTOS ---
 
 function addContacto(){
     let form = document.getElementById("formRegContacto");
@@ -128,5 +146,4 @@ function deleteContacto(id){
         form.action = 'funcionesContactos.php?action=eliminar';
         form.submit();
     }
-    
 }
