@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header('Location: registrar.php?error=' . $error . '&listado=true');
                 } else {
                     // Si es un registro público, redirige al registrar.php con el error
-                    header('Location: registrar.php?error=' . $error );
+                    header('Location: registrar.php?action=registrar&error=' . $error );
                 }
                 exit();
             }
