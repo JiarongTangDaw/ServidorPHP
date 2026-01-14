@@ -1,0 +1,283 @@
+<juegos>
+
+    <juego plataforma="PlayStation 5">
+        <titulo>Demon's Souls (Remake)</titulo>
+        <anio>2020</anio>
+        <metacritic>92</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/9/90/Demons_Souls_Remake.jpg</portada>
+    </juego>
+
+    <juego plataforma="PlayStation 5">
+        <titulo>Ratchet &amp; Clank: Rift Apart</titulo>
+        <anio>2021</anio>
+        <metacritic>88</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/3/34/Ratchet_and_Clank_Rift_Apart.jpg</portada>
+    </juego>
+
+    <juego plataforma="PlayStation 5">
+        <titulo>Returnal</titulo>
+        <anio>2021</anio>
+        <metacritic>86</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/7/7c/Returnal_Cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="PlayStation 5">
+        <titulo>God of War Ragnarök</titulo>
+        <anio>2022</anio>
+        <metacritic>94</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/4/44/God_of_War_Ragnarok.jpg</portada>
+    </juego>
+
+    <juego plataforma="PlayStation 5">
+        <titulo>Marvel's Spider-Man 2</titulo>
+        <anio>2023</anio>
+        <metacritic>90</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/6/60/Spider-Man_2_%28Insomniac%29_cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="PlayStation 5">
+        <titulo>Final Fantasy XVI</titulo>
+        <anio>2023</anio>
+        <metacritic>88</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/5/5e/Final_Fantasy_XVI.jpg</portada>
+    </juego>
+
+    <juego plataforma="PlayStation 5">
+        <titulo>Horizon Forbidden West</titulo>
+        <anio>2022</anio>
+        <metacritic>88</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/9/9e/Horizon_Forbidden_West.jpg</portada>
+    </juego>
+
+    <juego plataforma="PlayStation 5">
+        <titulo>Resident Evil 4 Remake</titulo>
+        <anio>2023</anio>
+        <metacritic>93</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/4/4f/Resident_Evil_4_Remake.jpg</portada>
+    </juego>
+
+    <juego plataforma="PlayStation 5">
+        <titulo>Elden Ring</titulo>
+        <anio>2022</anio>
+        <metacritic>96</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/9/9d/Elden_Ring_cover_art.jpg</portada>
+    </juego>
+
+    <juego plataforma="PlayStation 5">
+        <titulo>Astro's Playroom</titulo>
+        <anio>2020</anio>
+        <metacritic>90</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/1/10/Astro%27s_Playroom.jpg</portada>
+    </juego>
+
+    <juego plataforma="Xbox Series X">
+        <titulo>Elden Ring</titulo>
+        <anio>2022</anio>
+        <metacritic>96</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/9/9d/Elden_Ring_cover_art.jpg</portada>
+    </juego>
+
+    <juego plataforma="Xbox Series X">
+        <titulo>The Witcher 3: Wild Hunt – Complete Edition</titulo>
+        <anio>2015</anio>
+        <metacritic>94</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg</portada>
+    </juego>
+
+    <juego plataforma="Xbox Series X">
+        <titulo>Forza Horizon 5</titulo>
+        <anio>2021</anio>
+        <metacritic>92</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/0/0a/Forza_Horizon_5_cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="Xbox Series X">
+        <titulo>Halo Infinite</titulo>
+        <anio>2021</anio>
+        <metacritic>87</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/5/51/Halo_Infinite.png</portada>
+    </juego>
+
+    <juego plataforma="Xbox Series X">
+        <titulo>Senua’s Saga: Hellblade II</titulo>
+        <anio>2024</anio>
+        <metacritic>REPLACE_WITH_METACRITIC</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/REPLACE_WITH_IMAGE_HELLBLADE_II.jpg</portada>
+    </juego>
+
+    <juego plataforma="Xbox Series X">
+        <titulo>Psychonauts 2</titulo>
+        <anio>2021</anio>
+        <metacritic>87</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/5/55/Psychonauts_2.jpg</portada>
+    </juego>
+
+    <juego plataforma="Xbox Series X">
+        <titulo>Starfield</titulo>
+        <anio>2023</anio>
+        <metacritic>83</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/e/e3/Starfield_cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="Xbox Series X">
+        <titulo>Sea of Thieves</titulo>
+        <anio>2018</anio>
+        <metacritic>79</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/8/8d/Sea_of_Thieves_cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="Xbox Series X">
+        <titulo>Forza Motorsport 7</titulo>
+        <anio>2017</anio>
+        <metacritic>REPLACE_WITH_METACRITIC</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/REPLACE_WITH_IMAGE_FORZA_MOTORSPORT_7.jpg</portada>
+    </juego>
+
+    <juego plataforma="Xbox Series X">
+        <titulo>Hitman 3</titulo>
+        <anio>2021</anio>
+        <metacritic>87</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/9/90/Hitman_3_cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="PC">
+        <titulo>Half-Life 2</titulo>
+        <anio>2004</anio>
+        <metacritic>96</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/a/a1/Half-Life_2_cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="PC">
+        <titulo>The Witcher 3: Wild Hunt</titulo>
+        <anio>2015</anio>
+        <metacritic>94</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg</portada>
+    </juego>
+
+    <juego plataforma="PC">
+        <titulo>Counter-Strike: Global Offensive</titulo>
+        <anio>2012</anio>
+        <metacritic>83</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/6/6f/CSGO_cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="PC">
+        <titulo>StarCraft II</titulo>
+        <anio>2010</anio>
+        <metacritic>88</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/3/3e/StarCraft_II_cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="PC">
+        <titulo>Diablo II</titulo>
+        <anio>2000</anio>
+        <metacritic>88</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/5/5b/Diablo_II_cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="PC">
+        <titulo>Portal 2</titulo>
+        <anio>2011</anio>
+        <metacritic>95</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/f/f9/Portal2cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="PC">
+        <titulo>DOOM (2016)</titulo>
+        <anio>2016</anio>
+        <metacritic>85</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/5/57/DOOM_%282016%29_cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="PC">
+        <titulo>Minecraft</titulo>
+        <anio>2011</anio>
+        <metacritic>93</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png</portada>
+    </juego>
+
+    <juego plataforma="PC">
+        <titulo>Baldur's Gate 3</titulo>
+        <anio>2023</anio>
+        <metacritic>96</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/2/23/Baldur%27s_Gate_3_cover.jpg</portada>
+    </juego>
+
+    <juego plataforma="PC">
+        <titulo>League of Legends</titulo>
+        <anio>2009</anio>
+        <metacritic>80</metacritic>
+        <portada>REPLACE_WITH_IMAGE_URL_LEAGUE_OF_LEGENDS</portada>
+    </juego>
+
+    <juego plataforma="Nintendo Switch">
+        <titulo>The Legend of Zelda: Breath of the Wild</titulo>
+        <anio>2017</anio>
+        <metacritic>97</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/c/ca/The_Legend_of_Zelda_Breath_of_the_Wild.jpg</portada>
+    </juego>
+
+    <juego plataforma="Nintendo Switch">
+        <titulo>Super Mario Odyssey</titulo>
+        <anio>2017</anio>
+        <metacritic>97</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/8/8d/Super_Mario_Odyssey.jpg</portada>
+    </juego>
+
+    <juego plataforma="Nintendo Switch">
+        <titulo>Metroid Dread</titulo>
+        <anio>2021</anio>
+        <metacritic>88</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/0/07/Metroid_Dread.jpg</portada>
+    </juego>
+
+    <juego plataforma="Nintendo Switch">
+        <titulo>Mario Kart 8 Deluxe</titulo>
+        <anio>2017</anio>
+        <metacritic>92</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/0/06/Mario_Kart_8_Deluxe.jpg</portada>
+    </juego>
+
+    <juego plataforma="Nintendo Switch">
+        <titulo>Fire Emblem: Three Houses</titulo>
+        <anio>2019</anio>
+        <metacritic>89</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/3/31/Fire_Emblem_Three_Houses.jpg</portada>
+    </juego>
+
+    <juego plataforma="Nintendo Switch">
+        <titulo>Animal Crossing: New Horizons</titulo>
+        <anio>2020</anio>
+        <metacritic>90</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/4/4e/Animal_Crossing_New_Horizons.jpg</portada>
+    </juego>
+
+    <juego plataforma="Nintendo Switch">
+        <titulo>Splatoon 3</titulo>
+        <anio>2022</anio>
+        <metacritic>83</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/7/7e/Splatoon_3.jpg</portada>
+    </juego>
+
+    <juego plataforma="Nintendo Switch">
+        <titulo>Xenoblade Chronicles 3</titulo>
+        <anio>2022</anio>
+        <metacritic>90</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/0/0c/Xenoblade_Chronicles_3.jpg</portada>
+    </juego>
+
+    <juego plataforma="Nintendo Switch">
+        <titulo>Luigi's Mansion 3</titulo>
+        <anio>2019</anio>
+        <metacritic>86</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/3/3b/Luigi%27s_Mansion_3.jpg</portada>
+    </juego>
+
+    <juego plataforma="Nintendo Switch">
+        <titulo>The Legend of Zelda: Tears of the Kingdom</titulo>
+        <anio>2023</anio>
+        <metacritic>96</metacritic>
+        <portada>https://upload.wikimedia.org/wikipedia/en/d/d5/The_Legend_of_Zelda_Tears_of_the_Kingdom.jpg</portada>
+    </juego>
+
+</juegos>

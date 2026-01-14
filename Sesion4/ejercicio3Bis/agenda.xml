@@ -1,0 +1,23 @@
+<agenda>
+    <contacto id='1'>
+        <nombre>José Sánchez</nombre>
+        <email>jose@gmail.com</email>
+        <telefono>11111111</telefono>
+    </contacto>
+    <contacto id='2'>
+        <nombre>Mercedes Sanz</nombre>
+        <email>merxe@gmail.com</email>
+        <telefono>22222222</telefono>
+    </contacto>
+    <contacto id='3'>
+        <nombre>David Garcia</nombre>
+        <email>dgarcia@gmail.com</email>
+        <telefono>33333333</telefono>
+    </contacto>
+    <contacto id='4'>
+        <nombre>Amparo López</nombre>
+        <email>alopez@gmail.com</email>
+        <telefono>44444444</telefono>
+    </contacto>
+</agenda>
+
