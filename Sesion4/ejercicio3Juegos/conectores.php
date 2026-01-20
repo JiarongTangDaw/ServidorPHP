@@ -1,8 +1,8 @@
 <?php
 //Importo mi fichero de configuracion
-$config = require_once "./config.php";
-require_once "./plataforma.php";
-require_once "./videojuego.php";
+$config = require_once __DIR__ . "/config.php";
+require_once __DIR__ ."/plataforma.php";
+require_once __DIR__ ."/videojuego.php";
 $arrtiposcampoImg = ["image", "picture", "img"];
 class Conectores
 {
@@ -359,5 +359,60 @@ class Conectores
         $shtml .= "</div>"; // Cierre principal
 
         return $shtml;
+    }
+    public function procesarMySQL()
+    {
+        //Esta funcion me coge el xml de mi fichero de configuracion y me lo convierte en un array
+        global $config;
+        $mysql = $config['database']['mysql'];
+        $cadena = 'mysql:host='. $mysql['host'].':'.$mysql['puerto'].';dbname='. $mysql['database'];
+        $arr_salida = [];
+        try {
+            $pdo = new PDO($cadena, $mysql['usuario'], $mysql['password']);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $pdo->exec("SET NAMES 'utf8'");
+            $sql = "SELECT V.id, V.titulo, P.nombre AS plataforma, P.id AS plataforma_id, V.metacritic, V.portada, V.anio
+                    FROM juegos V 
+                    INNER JOIN plataformas P ON V.plataforma_id = P.id";
+            $lista = $pdo->query($sql);
+            $arrayPlataforma = [];
+            while ($videojuego = $lista->fetch()) {
+                $plataforma = $videojuego['plataforma'];
+                $keys = array_keys($arrayPlataforma);
+                if(!in_array($plataforma, $keys)){
+                    $arrayPlataforma[$plataforma] = [];
+                }
+                $arrayPlataforma[$plataforma][] = $videojuego;
+                
+            };
+            $plataformaId = 1;
+            foreach ($arrayPlataforma as $plataforma => $juegos) {
+                $arrayJuegos = [];
+                foreach($juegos as $juego){
+                    $titulo = $juego['titulo'];
+                    $metacritic = (string) $juego['metacritic'];
+                    $imagen = (string) $juego['portada'];
+                    $anio = (int) $juego['anio'];
+                    $juegoId = (int) $juego['id'];
+                    $newJuego = new Videojuego();
+                    $newJuego->setvideo_juego_id($juegoId);
+                    $newJuego->setplataforma_id($plataformaId);
+                    $newJuego->settitulo($titulo);
+                    $newJuego->setmetacritic($metacritic);
+                    $newJuego->setanio($anio);
+                    $newJuego->setimagen($imagen);
+                    array_push($arrayJuegos, $newJuego);
+                }
+                $platform = new Plataforma();
+                $platform->setplataforma_id($plataformaId);
+                $platform->setplataforma($plataforma);
+                $platform->setvideojuegos($arrayJuegos);
+                array_push($arr_salida, $platform);
+                $plataformaId += 1;
+            }
+        } catch (PDOException $e) {
+            echo "Error en la conexión: " . $e->getMessage();
+        }
+        return $arr_salida;
     }
 }

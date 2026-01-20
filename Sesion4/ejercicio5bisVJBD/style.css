@@ -1,0 +1,366 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* Estilos del formulario */
+#formulario {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+/* Contenedor principal */
+#principal {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sección para nuevo videojuego */
+#nuevo {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    align-items: end;
+}
+
+#nuevo h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 10px;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+#nuevo label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+#nuevo input[type="text"],
+#nuevo input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+#nuevo input[type="text"]:focus,
+#nuevo input[type="number"]:focus {
+    background-color: white;
+    outline: 2px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+/* Botón de agregar */
+#btAdd {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 200px;
+}
+
+#btAdd:hover {
+    background-color: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#btAdd:active {
+    transform: translateY(0);
+}
+
+/* Cabecera de la tabla */
+#cabecera {
+    display: grid;
+    grid-template-columns: 1fr 2fr 0.8fr 1fr 1.2fr;
+    gap: 15px;
+    padding: 20px;
+    background-color: #2c3e50;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+#cabecera p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Listado de videojuegos */
+#listado {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Cada fila de videojuego - ahora usando grid para alinear con la cabecera */
+#listado {
+    display: grid;
+    grid-template-columns: 1fr 2fr 0.8fr 1fr 1.2fr;
+    gap: 15px;
+    padding: 0;
+}
+
+/* Campos de entrada en el listado */
+#listado input[type="text"],
+#listado input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    background-color: white;
+    transition: all 0.2s ease;
+    margin: 10px 0;
+}
+
+/* Asegurar que los campos tengan la misma altura */
+#listado > input {
+    display: flex;
+    align-items: center;
+}
+
+/* Contenedor de botones - ahora como una celda más de la grid */
+#listado .botones {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.botones input[type="button"] {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    min-width: 70px;
+}
+
+/* Botón MOD (modificar) */
+.botones input[value="MOD"] {
+    background-color: #4ecdc4;
+    color: white;
+}
+
+.botones input[value="MOD"]:hover {
+    background-color: #3dbab1;
+}
+
+/* Botón DEL (eliminar) */
+.botones input[value="DEL"] {
+    background-color: #ff9f43;
+    color: white;
+}
+
+.botones input[value="DEL"]:hover {
+    background-color: #ff8c2a;
+}
+
+/* Campos ocultos */
+input[type="hidden"] {
+    display: none;
+}
+
+/* Efecto para filas completas */
+.fila-videojuego {
+    display: contents;
+}
+
+.fila-videojuego:hover > * {
+    background-color: #f0f7ff;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    #nuevo {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    #cabecera,
+    #listado {
+        grid-template-columns: 1fr 1.5fr 0.8fr 1fr 1fr;
+    }
+    
+    #btAdd {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    #nuevo {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 15px;
+    }
+    
+    /* Para móviles, ocultamos la cabecera y hacemos cada videojuego en bloque */
+    #cabecera {
+        display: none;
+    }
+    
+    #listado {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    /* Cada videojuego como una tarjeta en móvil */
+    .fila-videojuego-movil {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+        border-bottom: 2px solid #ddd;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        background-color: #f9f9f9;
+    }
+    
+    /* Agrupar cada campo con su label */
+    .campo-con-label {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 8px;
+    }
+    
+    .campo-con-label label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #2c3e50;
+        font-size: 0.9rem;
+    }
+    
+    .campo-con-label input[type="text"],
+    .campo-con-label input[type="number"] {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 0.95rem;
+    }
+    
+    #listado .botones {
+        margin-top: 10px;
+        justify-content: space-around;
+    }
+    
+    .botones input[type="button"] {
+        flex: 1;
+        max-width: 45%;
+        padding: 10px 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    #nuevo h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    
+    #nuevo label {
+        font-size: 0.9rem;
+    }
+    
+    #nuevo input[type="text"],
+    #nuevo input[type="number"] {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    
+    #btAdd {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+    
+    .fila-videojuego-movil {
+        padding: 12px;
+    }
+    
+    .campo-con-label label {
+        font-size: 0.85rem;
+    }
+    
+    .campo-con-label input[type="text"],
+    .campo-con-label input[type="number"] {
+        padding: 8px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .botones input[type="button"] {
+        font-size: 0.85rem;
+        min-width: 60px;
+    }
+}
+
+/* Efectos de transición para interacciones */
+input, button {
+    transition: all 0.2s ease;
+}
+
+/* Estilos para los mensajes de alerta */
+.alert-message {
+    background-color: #4ecdc4;
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.error-message {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+}

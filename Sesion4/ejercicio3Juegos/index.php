@@ -20,6 +20,9 @@ switch ($conector) {
         case 'json':
                 $arrFinalPlataformas = $conec->procesarJSON();
                 break;
+        case 'mysql':
+                $arrFinalPlataformas = $conec->procesarMySQL();
+                break;
         default:
 }
 
