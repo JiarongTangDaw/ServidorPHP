@@ -25,7 +25,7 @@
                 break;
             case 'eliminar':
                 eliminar($id);
-                // header("Location: index.php?mensaje=videojuego eliminado correctamente");
+                header("Location: index.php?mensaje=videojuego eliminado correctamente");
                 break;
             case 'add':
                 $error =agregar($titulo, $anio, $metacritic, $plataforma);
@@ -57,11 +57,16 @@
             $error = "La plataforma no existe. No se puede agregar el videojuego.";
         }else{
             $stmt = $pdo->prepare("INSERT INTO juegos (titulo, anio, metacritic, plataforma_id) VALUES (:titulo, :anio, :metacritic, :plataforma_id)");
-            $stmt->bindParam(':titulo', $titulo);
-            $stmt->bindParam(':anio', $anio);
-            $stmt->bindParam(':metacritic', $metacritic);
-            $stmt->bindParam(':plataforma_id', $plataforma_id);
-            $stmt->execute();
+            // $stmt->bindParam(':titulo', $titulo);
+            // $stmt->bindParam(':anio', $anio);
+            // $stmt->bindParam(':metacritic', $metacritic);
+            // $stmt->bindParam(':plataforma_id', $plataforma_id);
+            $stmt->execute([
+                ':titulo' => $titulo,
+                ':anio' => $anio,
+                ':metacritic' => $metacritic,
+                ':plataforma_id' => $plataforma_id
+            ]);
         }
         return $error;
         
@@ -87,12 +92,20 @@
             $error = "La plataforma no existe. No se puede modificar el videojuego.";
         }else{
             $stmt = $pdo->prepare("UPDATE juegos SET titulo = :titulo, anio = :anio, metacritic = :metacritic, plataforma_id = :plataforma_id WHERE id = :id");
-            $stmt->bindParam(':titulo', $titulo);
-            $stmt->bindParam(':anio', $anio);
-            $stmt->bindParam(':metacritic', $metacritic);
-            $stmt->bindParam(':plataforma_id', $plataforma_id);
-            $stmt->bindParam(':id', $id);
-            $stmt->execute();
+            //* definicion de parametros cuando se necesita espeficicar tipo de datos
+            // $stmt->bindParam(':titulo', $titulo);
+            // $stmt->bindParam(':anio', $anio);
+            // $stmt->bindParam(':metacritic', $metacritic);
+            // $stmt->bindParam(':plataforma_id', $plataforma_id);
+            // $stmt->bindParam(':id', $id);
+            //*definicion de parametros cuando empiezas 
+            $stmt->execute([
+                'titulo' => $titulo,
+                'anio' => $anio,
+                'metacritic' => $metacritic,
+                'plataforma_id' => $plataforma_id,
+                'id' => $id
+            ]);
         }
         return $error;
     }
@@ -101,9 +114,7 @@
         global $pdo;
 
         $stmt = $pdo->prepare("DELETE FROM juegos WHERE id = :id");
-        $stmt->bindParam(':id', $id);
-     
-        $stmt->execute();
+        $stmt->execute(['id' => $id]);
     }
 
 ?>

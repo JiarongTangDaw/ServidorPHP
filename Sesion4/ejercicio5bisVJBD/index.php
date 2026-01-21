@@ -10,6 +10,10 @@
     if($mensaje != ''){
         echo "<script>alert('$mensaje');</script>";
     }
+    global $pdo;
+    $stmt = $pdo->prepare("SELECT * FROM plataformas");
+    $stmt->execute();
+    $plataformas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,11 +40,14 @@
             <div id="nuevo">
                 <h2>Nuevo Videojuego</h2>
                 <label for="titulo0">Titulo</label>
-                <!-- Campo para el titulo -->
                 <input type="text" id="titulo0" value="">
                 <label for="plataforma0">Plataforma</label> 
-                <!-- campo para el autor -->
-                <input type="text" id="plataforma0" value="">
+                <select id="plataforma0">
+                    <option value=''></option>
+                    <?php foreach($plataformas as $plataforma): ?>
+                        <option value="<?= $plataforma['nombre'] ?>"><?= $plataforma['nombre'] ?></option>
+                    <?php endforeach; ?>
+                </select>
                 <label for="anio0">Año</label>
                 <input type="number" id="anio0" min="1900" value="">
                 <label for="metacritic0">Metacritic</label>
@@ -52,8 +59,8 @@
                 </div>
             </div><!-- cabecera para la tabla de lista de comics -->
             <div id="cabecera">                
-                <p>Plataforama</p>
-                <p>Titulo</p>
+                <p>Plataforma</p>
+                <p>Título</p>
                 <p>Año</p>
                 <p>Metacritic</p>
                 <p>Botones</p>
@@ -66,7 +73,11 @@
                         $plataformaNombre = $plataforma -> getplataforma();
                         foreach($arrayJuegos as $juego){
                 ?>
-                    <input type="text" name="plataforma<?=$juego -> video_juego_id?>" id="plataforma<?=$juego -> video_juego_id?>" value="<?= $plataformaNombre ?>">
+                <select name="plataforma<?=$juego -> video_juego_id?>" id="plataforma<?=$juego -> video_juego_id?>">
+                <?php foreach($plataformas as $plataforma): ?>
+                    <option value="<?= $plataforma['nombre'] ?>" <?= $plataforma['nombre'] == $plataformaNombre ? 'selected' : '' ?>><?= $plataforma['nombre']?></option>
+                <?php endforeach; ?>
+                </select>
                     <input type="text" name="titulo<?=$juego -> video_juego_id?>" id="titulo<?=$juego -> video_juego_id?>" value="<?= $juego -> titulo ?>">
                     <input type="number" name="anio<?=$juego -> video_juego_id?>" id="anio<?=$juego -> video_juego_id?>" value="<?= $juego -> anio ?>">
                     <input type="text" name="metacritic<?=$juego -> video_juego_id?>" id="metacritic<?=$juego -> video_juego_id?>" value="<?= $juego -> metacritic ?>">

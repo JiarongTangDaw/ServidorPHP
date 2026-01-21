@@ -57,7 +57,8 @@ body {
 }
 
 #nuevo input[type="text"],
-#nuevo input[type="number"] {
+#nuevo input[type="number"],
+#nuevo select {
     width: 100%;
     padding: 12px 15px;
     border: none;
@@ -68,11 +69,13 @@ body {
 }
 
 #nuevo input[type="text"]:focus,
-#nuevo input[type="number"]:focus {
+#nuevo input[type="number"]:focus,
+#nuevo select:focus {
     background-color: white;
     outline: 2px solid rgba(255, 255, 255, 0.7);
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
 }
+
 
 /* Botón de agregar */
 #btAdd {
@@ -133,11 +136,13 @@ body {
     grid-template-columns: 1fr 2fr 0.8fr 1fr 1.2fr;
     gap: 15px;
     padding: 0;
+    margin-left: 10px;
 }
 
 /* Campos de entrada en el listado */
 #listado input[type="text"],
-#listado input[type="number"] {
+#listado input[type="number"],
+#listado select {
     width: 100%;
     padding: 12px 15px;
     border: 1px solid #ddd;
@@ -149,7 +154,7 @@ body {
 }
 
 /* Asegurar que los campos tengan la misma altura */
-#listado > input {
+#listado > input, #listado > select {
     display: flex;
     align-items: center;
 }
@@ -278,7 +283,8 @@ input[type="hidden"] {
     }
     
     .campo-con-label input[type="text"],
-    .campo-con-label input[type="number"] {
+    .campo-con-label input[type="number"],
+    .campo-con-label select {
         width: 100%;
         padding: 10px 12px;
         border: 1px solid #ddd;
@@ -309,7 +315,8 @@ input[type="hidden"] {
     }
     
     #nuevo input[type="text"],
-    #nuevo input[type="number"] {
+    #nuevo input[type="number"],
+    #nuevo select {
         padding: 10px 12px;
         font-size: 0.95rem;
     }
@@ -328,7 +335,8 @@ input[type="hidden"] {
     }
     
     .campo-con-label input[type="text"],
-    .campo-con-label input[type="number"] {
+    .campo-con-label input[type="number"],
+    .campo-con-label select {
         padding: 8px 10px;
         font-size: 0.9rem;
     }
