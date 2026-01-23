@@ -71,18 +71,7 @@
         return $error;
         
     }
-    function interpolateQuery($query, $params) {
-    foreach ($params as $key => $value) {
-        if (is_string($value)) {
-            $value = "'" . addslashes($value) . "'";
-        } elseif ($value === null) {
-            $value = 'NULL';
-        }
-        $query = str_replace($key, $value, $query);
-    }
-    return $query;
-}
-
+    
     function modificar($id, $titulo, $anio, $metacritic, $plataforma){
         global $pdo;
 
