@@ -1,0 +1,242 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Contenedor principal */
+#principal {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Formulario */
+form {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+}
+
+form:hover {
+    transform: translateY(-5px);
+}
+
+/* Títulos */
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    border-bottom: 3px solid #3498db;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Sección nuevo */
+#nuevo {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#nuevo h2 {
+    grid-column: 1 / -1;
+}
+
+/* Labels */
+label {
+    font-weight: 600;
+    color: #34495e;
+    font-size: 1.1rem;
+}
+
+/* Inputs */
+input[type="text"] {
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* Botones */
+.botones {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 20px;
+}
+
+input[type="button"] {
+    background: linear-gradient(to right, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+input[type="button"]:hover {
+    background: linear-gradient(to right, #2980b9, #1c6ea4);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+input[type="button"]:active {
+    transform: translateY(0);
+}
+
+/* Sección de plataformas */
+.plataformas {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.plataformas ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.plataformas li {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.plataformas li:hover {
+    transform: translateX(10px);
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    #principal {
+        padding: 10px;
+    }
+    
+    form, .plataformas {
+        padding: 20px;
+    }
+    
+    #nuevo {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .plataformas ul {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+    
+    input[type="button"] {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .plataformas ul {
+        grid-template-columns: 1fr;
+    }
+    
+    #nuevo {
+        gap: 10px;
+    }
+    
+    input[type="text"] {
+        padding: 10px;
+    }
+    
+    input[type="button"] {
+        padding: 15px;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Alertas (para los mensajes de PHP) */
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    background: #2ecc71;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.3s ease;
+    z-index: 1000;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Efectos de transición */
+* {
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Mejoras de accesibilidad */
+input:focus,
+button:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+}
