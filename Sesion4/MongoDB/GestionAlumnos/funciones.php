@@ -164,7 +164,7 @@
                     'numero' => $numFilaNew,
                 ],
                 [
-                    '$push' =>['alumnos' => $alumno]
+                    '$push' =>['alumnos' => $alumno] //añadimos el alumno modificado a la fila nueva
                 ]
             );
             try { // Intentar ejecutar la operación
@@ -177,15 +177,18 @@
         return $error;
     }
 
+// Función para importar datos desde CSV, XML y JSON
     function importar(){
         global $conexion;
         global $bbdd;
         global $arrayFilaAlumnos;
         
+        // Procesar los archivos de datos
         procesarCsv();
         procesarXML();
         procesarJSON();
         $error = '';
+        // Insertar los datos en la base de datos
         foreach ($arrayFilaAlumnos as $item) {
             // Crear la nueva fila
             $newFila = new BulkWrite();
@@ -205,7 +208,7 @@
         return $error;
     }
 
-
+    // Función para procesar el archivo CSV
     function procesarCsv(){
         //Esta funcion me coge el csv de mi fichero de configuracion y me lo convierte en un array
         global $config;
@@ -214,6 +217,7 @@
         $csv = $config['database']['csv'];
         $fichero = __DIR__ . "\\" . $csv;
         $arr_salida = [];
+        //Compruebo que el fichero exista
         if (file_exists($fichero)) {
             //Abro el cursor del fichero
             $f = fopen($fichero, "r");
@@ -225,7 +229,7 @@
             array_push($arr_salida, $array);
             while (!feof($f)) {
                 //El bucle me va línea a línea mientras no sea el caracter final de fichero
-                $array = fgetcsv($f,0,';');
+                $array = fgetcsv($f,0,';'); //Leo la linea y la convierto en array separando por ;
                 array_push($arr_salida, $array);
             }
 
@@ -235,23 +239,28 @@
 
         $arr_salida = array_slice($arr_salida, 1); //Elimino la primera fila que son los encabezados
         
+        // Recorro el array para crear los objetos Fila y Alumno
         foreach($arr_salida as $fila){
+            // $fila[0] = nombre, $fila[1] = apellidos, $fila[2] = fila, $fila[3] = sexo, $fila[4] = es_profe_sexi
             $key = $fila[2];
-            $newFila = new Fila();
-            $newFila->setNumero($key);
+            $newFila = new Fila(); // Creo una nueva fila
+            $newFila->setNumero($key); // Asigno el número de fila
+            // Verifico si la fila ya existe en el array
             $encontrado = array_filter($arrayFilaAlumnos, function($item) use ($key) {
                 return $item->getNumero() == $key;
             });
+            // Si no existe, la añado al array
             if(empty($encontrado)){
                 $arrayFilaAlumnos[] = $newFila;
             }
-            $esProfeSexi = ($fila[4] == 0 ? false : true);
+            // Creo el nuevo alumno
             $newAlumno = new Alumno();
+            $esProfeSexi = ($fila[4] == 0 ? false : true);
             $newAlumno->setNombre($fila[0]);
             $newAlumno->setApellidos($fila[1]);
             $newAlumno->setSexo($fila[3]);
             $newAlumno->setEsProfeSexy($esProfeSexi);
-            
+            // Añado el alumno a la fila correspondiente
             foreach($arrayFilaAlumnos as $item){
                 if($item->getNumero() == $key){
                     $alumnosFila = $item->getAlumnos();
@@ -262,7 +271,7 @@
         }
     }
 
-
+    // Función para procesar el archivo XML
     function procesarXML(){
         //Esta funcion me coge el xml de mi fichero de configuracion y me lo convierte en un array
         global $config;
@@ -271,16 +280,19 @@
         $xml = $config['database']['xml'];
         $fichero = __DIR__ . "\\". $xml;
         $arr_salida = [];
+        //Compruebo que el fichero exista
         if (file_exists($fichero)) {
             $xml = simplexml_load_file($fichero);
             foreach ($xml as $child) {
                 $arr_salida[] = $child;
             }
         }
+        // Recorro el array para crear los objetos Fila y Alumno
         foreach($arr_salida as $fila){
-            $fila = (array)$fila;
+            // $fila->nombre, $fila->apellidos, $fila->fila, $fila->sexo, $fila->es_profe_sexi
+            $fila = (array)$fila; // Convertir el objeto SimpleXMLElement a un array
             $key = $fila['fila'];
-            
+            // Crear una nueva fila
             $newFila = new Fila();
             $newFila->setNumero($key);
             $encontrado = array_filter($arrayFilaAlumnos, function($item) use ($key) {
@@ -289,14 +301,14 @@
             if(empty($encontrado)){
                 $arrayFilaAlumnos[] = $newFila;
             }
-            $esProfeSexi = ($fila['es_profe_sexi'] == 0 ? false : true);
-
+            // Crear el nuevo alumno
             $newAlumno = new Alumno();
+            $esProfeSexi = ($fila['es_profe_sexi'] == 0 ? false : true);
             $newAlumno->setNombre($fila['nombre']);
             $newAlumno->setApellidos($fila['apellidos']);
             $newAlumno->setSexo($fila['sexo']);
             $newAlumno->setEsProfeSexy($esProfeSexi);
-            
+            // Añado el alumno a la fila correspondiente
             foreach($arrayFilaAlumnos as $item){
                 if($item->getNumero() == $key){
                     $alumnosFila = $item->getAlumnos();
@@ -307,6 +319,7 @@
         }
     }
 
+    // Función para procesar el archivo JSON
     function procesarJSON(){
         //Esta funcion me coge el json de mi fichero de configuracion y me lo convierte en un array
         global $config;
@@ -315,6 +328,7 @@
         $json = $config['database']['json'];
         $fichero = __DIR__ . "\\". $json;
         $arr_salida = [];
+        //Compruebo que el fichero exista
         if (file_exists($fichero)) {
             $json = file_get_contents($fichero);
             $datos = json_decode($json, true);
@@ -322,25 +336,28 @@
                 $arr_salida[] = $item;
             }
         }
+        // Recorro el array para crear los objetos Fila y Alumno
          foreach($arr_salida as $fila){
             $key = $fila['fila'];
             
+            // Crear una nueva fila
             $newFila = new Fila();
             $newFila->setNumero($key);
             $encontrado = array_filter($arrayFilaAlumnos, function($item) use ($key) {
                 return $item->getNumero() == $key;
             });
+            // Si no existe, la añado al array
             if(empty($encontrado)){
                 $arrayFilaAlumnos[] = $newFila;
             }
-            $esProfeSexi = ($fila['es_profe_sexi'] == 0 ? false : true);
-
+            // Crear el nuevo alumno
             $newAlumno = new Alumno();
+            $esProfeSexi = ($fila['es_profe_sexi'] == 0 ? false : true);
             $newAlumno->setNombre($fila['nombre']);
             $newAlumno->setApellidos($fila['apellidos']);
             $newAlumno->setSexo($fila['sexo']);
             $newAlumno->setEsProfeSexy($esProfeSexi);
-            
+            // Añado el alumno a la fila correspondiente
             foreach($arrayFilaAlumnos as $item){
                 if($item->getNumero() == $key){
                     $alumnosFila = $item->getAlumnos();
