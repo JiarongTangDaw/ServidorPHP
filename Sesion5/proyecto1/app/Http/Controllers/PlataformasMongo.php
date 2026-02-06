@@ -6,16 +6,29 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Services\Conectores;
+use MongoDB\Driver\Query;
+use MongoDB\Driver\Manager;
+use MongoDB\Driver\BulkWrite;
+use MongoDB\BSON\ObjectID;
 
 class PlataformasMongo extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+    protected $conector;
+
+    public function __construct()
+    {
+        $manager = new Conectores();
+        $this->conector = $manager->getMongo();
+    }
+
     public function index()
     {
-        $conector = new Conectores();
-        $datos = $conector->procesarMongoDB();
+        $manager = $this->conector->executeQuery('videojuegos_db.plataformas', new Query([], []));
+        $datos = $manager->toArray();
         return $datos;
     }
 
@@ -32,7 +45,13 @@ class PlataformasMongo extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $bulk = new BulkWrite();
+        $bulk->insert([
+            'nombre' => $request->input('nombre','NEOGEO'), // Si no se proporciona un nombre, se usará 'NEOGEO' por defecto
+            'juegos' => $request->input('juegos', []) // Si no se proporciona una lista de juegos, se usará un array vacío por defecto
+        ]);
+        $this->conector->executeBulkWrite('videojuegos_db.plataformas', $bulk);
+        return response()->json($request->all(), 201);
     }
 
     /**
@@ -57,6 +76,16 @@ class PlataformasMongo extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $bulk = new BulkWrite();
+        $bulk->update(
+            ['$and' =>['_id' => new ObjectID($id)]],
+            ['$set' => [
+                'nombre' => $request->input('nombre'),
+                'juegos' => $request->input('juegos')
+            ]]
+        );
+        $this->conector->executeBulkWrite('videojuegos_db.plataformas', $bulk);
+        return response()->json($request->all(), 200);
     }
 
     /**
@@ -65,5 +94,9 @@ class PlataformasMongo extends Controller
     public function destroy(string $id)
     {
         //
+        $bulk = new BulkWrite();
+        $bulk->delete(['_id' => new ObjectID($id)], ['limit' => true]);
+        $this->conector->executeBulkWrite('videojuegos_db.plataformas', $bulk);
+        return response()->json(['mensaje' => 'Plataforma eliminada exitosamente'], 200);
     }
 }

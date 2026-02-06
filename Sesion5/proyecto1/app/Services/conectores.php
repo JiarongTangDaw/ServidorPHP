@@ -472,4 +472,47 @@ class Conectores
         }
         return $arr_salida;
     }
+    public function getMongo($coleccion = "plataformas")
+    {
+        //Esta funcion me coge el xml de mi fichero de configuracion y me lo convierte en un array
+        global $config;
+        $user = env('MONGO_DB_USERNAME');
+        $password = env('MONGO_DB_PASSWORD');
+        $host = env('MONGO_DB_HOST');
+        $port = env('MONGO_DB_PORT');
+        $database = env('MONGO_DB_DATABASE');
+        $cadena = 'mongodb://'. $user. ':' . $password . '@'. $host . ':' . $port . '/' . $database;
+        try {
+            $conexion = new Manager ($cadena);
+            // $platID = 1;
+            // foreach($datos as $plataforma){
+            //     $nombrePla = $plataforma->nombre;
+            //     $arrayJuegos = [];
+            //     foreach($plataforma->juegos as $juego){
+            //         $titulo = $juego->titulo;
+            //         $juegoID = $juego->id;
+            //         $anio = $juego->anio;
+            //         $imagen = $juego->portada;
+            //         $metacritic = $juego->metacritic;
+            //         $newJuego = new Videojuego();
+            //         $newJuego->setvideo_juego_id($juegoID);
+            //         $newJuego->setplataforma_id($platID);
+            //         $newJuego->settitulo($titulo);
+            //         $newJuego->setmetacritic($metacritic);
+            //         $newJuego->setanio($anio);
+            //         $newJuego->setimagen($imagen);
+            //         array_push($arrayJuegos, $newJuego);
+            //     }
+            //     $platform = new Plataforma();
+            //     $platform->setplataforma_id($platID);
+            //     $platform->setplataforma($nombrePla);
+            //     $platform->setvideojuegos($arrayJuegos);
+            //     array_push($arr_salida, $platform);
+            //     $platID += 1;
+            // }
+            return $conexion;
+        } catch (PDOException $e) {
+            echo "Error en la conexión: " . $e->getMessage();
+        }
+    }
 }
