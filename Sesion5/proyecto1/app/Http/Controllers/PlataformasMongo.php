@@ -78,7 +78,7 @@ class PlataformasMongo extends Controller
         //
         $bulk = new BulkWrite();
         $bulk->update(
-            ['$and' =>['_id' => new ObjectID($id)]],
+            ['_id' => new ObjectID($id)],
             ['$set' => [
                 'nombre' => $request->input('nombre'),
                 'juegos' => $request->input('juegos')
