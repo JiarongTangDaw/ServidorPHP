@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumnosController;
 use App\Http\Controllers\FilaMongo;
+use App\Http\Controllers\PlataformasMongo;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,4 +23,6 @@ Route::get('/hola2/{nombre?}', function ($nombre = "Anónimo") {
 
 Route::resource('/alumnos', AlumnosController::class);
 
-Route::resource('/mongo', FilaMongo::class);
+Route::resource('/mongoFilas', FilaMongo::class);
+
+Route::resource('/mongoPlataformas', PlataformasMongo::class);

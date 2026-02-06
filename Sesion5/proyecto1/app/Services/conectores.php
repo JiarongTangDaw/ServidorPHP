@@ -425,7 +425,7 @@ class Conectores
         }
         return $arr_salida;
     }
-    public function procesarMongoDB($tabla = "plataformas")
+    public function procesarMongoDB($coleccion = "plataformas")
     {
         //Esta funcion me coge el xml de mi fichero de configuracion y me lo convierte en un array
         global $config;
@@ -438,7 +438,7 @@ class Conectores
         $arr_salida = [];
         try {
             $conexion = new Manager ($cadena);
-            $datos = $conexion->executeQuery('videojuegos_db.' . $tabla, new Query([], []));
+            $datos = $conexion->executeQuery('videojuegos_db.' . $coleccion, new Query([], []));
             $datos = $datos->toArray();
             $arr_salida = $datos;
             // $platID = 1;
