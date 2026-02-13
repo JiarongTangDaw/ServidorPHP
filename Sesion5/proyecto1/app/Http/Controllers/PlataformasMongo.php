@@ -18,6 +18,7 @@ class PlataformasMongo extends Controller
      */
 
     protected $conector;
+    protected $bbdd = 'videojuegos_db.plataformas';
 
     public function __construct()
     {
@@ -27,7 +28,7 @@ class PlataformasMongo extends Controller
 
     public function index()
     {
-        $manager = $this->conector->executeQuery('videojuegos_db.plataformas', new Query([], []));
+        $manager = $this->conector->executeQuery($this->bbdd, new Query([], []));
         $datos = $manager->toArray();
         return $datos;
     }

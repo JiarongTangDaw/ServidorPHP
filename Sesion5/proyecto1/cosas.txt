@@ -1,0 +1,53 @@
+public function crearID(string $plataforma){
+        $resultado = $this->conector->executeQuery($this->bbdd, new Query(
+            ['nombre' => $plataforma],
+            []));
+        $datos = $resultado->toArray();
+        $salida = count($datos) + 1;
+        return $salida;
+}
+
+// codigo para crear un nuevo juego en la base de datos
+$validar = $request->validate([
+            'plataforma' => 'required|string',
+            'titulo' => 'required|string',
+            'portada' => 'nullable|string',
+            'anio' => 'required|integer',
+            'metacritic' => 'required|integer',
+        ]);
+
+        $buscaPlataforma = $this->conector->executeQuery($this->bbdd, new Query(
+            ['nombre' => $validar['plataforma']],
+            []));
+        $datos = $buscaPlataforma->toArray();
+
+        $id = $this->crearID($validar['plataforma']);
+
+        $bulk = new BulkWrite();
+        if (count($datos) == 0) {
+            $bulk->insert([
+                'nombre' => $validar['plataforma'],
+                'juegos' => [[
+                    'id' => $id,
+                    'titulo' => $validar['titulo'],
+                    'portada' => $validar['portada'],
+                    'anio' => $validar['anio'],
+                    'metacritic' => $validar['metacritic']
+                ]]
+            ]);
+            $this->conector->executeBulkWrite($this->bbdd, $bulk);
+        }else{
+            $bulk->update(
+                ['nombre' => $validar['plataforma']],
+                ['$push' => [
+                    'juegos' => [
+                        'id' => $id,
+                        'titulo' => $validar['titulo'],
+                        'portada' => $validar['portada'],
+                        'anio' => $validar['anio'],
+                        'metacritic' => $validar['metacritic']
+                    ]
+                ]]
+            );
+            $this->conector->executeBulkWrite($this->bbdd, $bulk);
+        }
