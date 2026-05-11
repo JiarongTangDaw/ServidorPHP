@@ -1,0 +1,590 @@
+/* ============================================================
+   COMPATIBILIDADES — style.css
+   Paleta: Blanco · Naranja · Azul · Negro
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap');
+
+/* ── Variables ── */
+:root {
+  --naranja:       #F97316;
+  --naranja-oscuro:#C45A0A;
+  --naranja-suave: #FEF0E7;
+  --azul:          #1D4ED8;
+  --azul-oscuro:   #1E3A8A;
+  --azul-suave:    #EFF6FF;
+  --negro:         #0D0D0D;
+  --gris-oscuro:   #1F2937;
+  --gris-medio:    #6B7280;
+  --gris-claro:    #F3F4F6;
+  --blanco:        #FFFFFF;
+
+  --topbar-h:      64px;
+  --sidebar-w:     220px;
+  --radio:         8px;
+  --sombra:        0 4px 24px rgba(0,0,0,.10);
+  --sombra-btn:    0 2px 8px rgba(249,115,22,.35);
+
+  --font-titulo:   'Barlow Condensed', sans-serif;
+  --font-cuerpo:   'Barlow', sans-serif;
+
+  --trans:         .2s ease;
+}
+
+/* ── Reset base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-cuerpo);
+  background: var(--gris-claro);
+  color: var(--negro);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--topbar-h);
+  background: var(--negro);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  border-bottom: 3px solid var(--naranja);
+  box-shadow: 0 2px 16px rgba(0,0,0,.4);
+}
+
+.topbar h2 {
+  font-family: var(--font-titulo);
+  font-size: 1.6rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--blanco);
+}
+
+.topbar h2 span { color: var(--naranja); }
+
+.topbar div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.topbar span {
+  color: var(--gris-medio);
+  font-size: .9rem;
+  font-weight: 500;
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-family: var(--font-cuerpo);
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: var(--radio);
+  padding: .55rem 1.2rem;
+  cursor: pointer;
+  transition: background var(--trans), transform var(--trans), box-shadow var(--trans);
+  white-space: nowrap;
+}
+
+/* Botón primario — naranja */
+.topbar button,
+button[type="submit"],
+button[type="button"],
+.btn-primary {
+  background: var(--naranja);
+  color: var(--blanco);
+  box-shadow: var(--sombra-btn);
+}
+
+.topbar button:hover,
+button[type="submit"]:hover,
+button[type="button"]:hover,
+.btn-primary:hover {
+  background: var(--naranja-oscuro);
+  transform: translateY(-1px);
+}
+
+/* Variantes de tabla */
+.btn.anadir  { background: var(--azul);          color: var(--blanco); }
+.btn.anadir:hover  { background: var(--azul-oscuro); transform: translateY(-1px); }
+
+.btn.editar  { background: var(--naranja-suave);  color: var(--naranja-oscuro); border: 1px solid var(--naranja); }
+.btn.editar:hover  { background: var(--naranja); color: var(--blanco); }
+
+.btn.borrar  { background: #FEE2E2; color: #B91C1C; border: 1px solid #FCA5A5; }
+.btn.borrar:hover  { background: #B91C1C; color: var(--blanco); }
+
+.btn.volver  { background: var(--gris-claro); color: var(--gris-oscuro); border: 1px solid #D1D5DB; }
+.btn.volver:hover  { background: #E5E7EB; }
+
+/* ============================================================
+   CONTENEDOR PRINCIPAL (páginas sin sidebar)
+   ============================================================ */
+.container {
+  max-width: 860px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+/* ============================================================
+   LAYOUT CON SIDEBAR (panelAdmin)
+   ============================================================ */
+.layout {
+  display: flex;
+  min-height: calc(100vh - var(--topbar-h));
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--gris-oscuro);
+  flex-shrink: 0;
+  padding: 1.5rem 0;
+  position: sticky;
+  top: var(--topbar-h);
+  height: calc(100vh - var(--topbar-h));
+  overflow-y: auto;
+  border-right: 3px solid var(--naranja);
+}
+
+.sidebar ul { list-style: none; }
+
+.sidebar li a {
+  display: block;
+  padding: .85rem 1.5rem;
+  color: #CBD5E1;
+  font-weight: 600;
+  font-size: .9rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  border-left: 4px solid transparent;
+  transition: all var(--trans);
+}
+
+.sidebar li a:hover,
+.sidebar li a.active {
+  background: rgba(249,115,22,.12);
+  color: var(--naranja);
+  border-left-color: var(--naranja);
+}
+
+/* Contenido principal */
+.contenido {
+  flex: 1;
+  padding: 2rem 2.5rem;
+  overflow-x: auto;
+}
+
+/* ============================================================
+   HEADINGS
+   ============================================================ */
+h1 {
+  font-family: var(--font-titulo);
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--negro);
+  margin-bottom: 1.5rem;
+  padding-bottom: .5rem;
+  border-bottom: 3px solid var(--naranja);
+  display: inline-block;
+}
+
+h2 { font-family: var(--font-titulo); font-weight: 700; }
+
+/* ============================================================
+   TARJETA / CARD (formularios de registro)
+   ============================================================ */
+.card {
+  background: var(--blanco);
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  box-shadow: var(--sombra);
+  border-top: 4px solid var(--naranja);
+  margin-bottom: 2rem;
+}
+
+/* ============================================================
+   FORMULARIOS
+   ============================================================ */
+form {
+  background: var(--blanco);
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  box-shadow: var(--sombra);
+  border-top: 4px solid var(--naranja);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+/* Formulario de búsqueda en index */
+#formBusqueda { max-width: 560px; }
+
+label {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--gris-medio);
+  margin-top: .4rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: .65rem .9rem;
+  border: 2px solid #E5E7EB;
+  border-radius: var(--radio);
+  font-family: var(--font-cuerpo);
+  font-size: .95rem;
+  color: var(--negro);
+  background: var(--blanco);
+  transition: border-color var(--trans), box-shadow var(--trans);
+  outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--naranja);
+  box-shadow: 0 0 0 3px rgba(249,115,22,.18);
+}
+
+input[type="hidden"] { display: none; }
+
+/* ── Select personalizado ── */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23F97316' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right .85rem center;
+  background-size: 16px;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+select:hover {
+  border-color: var(--naranja);
+}
+
+select option {
+  font-family: var(--font-cuerpo);
+  font-size: .95rem;
+  color: var(--negro);
+  background: var(--blanco);
+  padding: .5rem;
+}
+
+select option:checked {
+  background: var(--naranja-suave);
+  color: var(--naranja-oscuro);
+}
+
+/* Opción placeholder (value="") */
+select option[value=""] {
+  color: var(--gris-medio);
+  font-style: italic;
+}
+
+/* Botón submit dentro de formularios */
+form button[type="submit"],
+form button[type="button"] {
+  margin-top: .8rem;
+  align-self: flex-start;
+}
+
+/* ============================================================
+   AUTOCOMPLETADO (sugerencias AJAX)
+   ============================================================ */
+ul#sugerencias_modelo,
+ul#sugerencias_tipo,
+[id^="sugerencias"] {
+  list-style: none;
+  background: var(--blanco);
+  border: 2px solid var(--naranja);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  max-height: 220px;
+  overflow-y: auto;
+  margin-top: -4px;
+  display: none;
+  position: absolute;
+  z-index: 50;
+  min-width: 280px;
+}
+
+ul#sugerencias_modelo li,
+ul#sugerencias_tipo li,
+[id^="sugerencias"] li {
+  padding: .6rem 1rem;
+  cursor: pointer;
+  font-size: .9rem;
+  transition: background var(--trans);
+  border-bottom: 1px solid var(--gris-claro);
+}
+
+ul#sugerencias_modelo li:last-child,
+ul#sugerencias_tipo li:last-child,
+[id^="sugerencias"] li:last-child { border-bottom: none; }
+
+ul#sugerencias_modelo li:hover,
+ul#sugerencias_tipo li:hover,
+[id^="sugerencias"] li:hover {
+  background: var(--naranja-suave);
+  color: var(--naranja-oscuro);
+}
+
+/* Wrapper relativo para que las listas floten bien */
+.input-wrap { position: relative; }
+
+/* ============================================================
+   RESULTADOS (div#resultados en index)
+   ============================================================ */
+#resultados {
+  margin-top: 2rem;
+}
+
+#resultados table { margin-top: 0; }
+
+/* ============================================================
+   TABLAS
+   ============================================================ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--blanco);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  margin-top: 1.2rem;
+  font-size: .92rem;
+}
+
+thead,
+table tr:first-child th:first-child ~ th,
+th {
+  background: var(--negro);
+  color: var(--blanco);
+  font-family: var(--font-titulo);
+  font-size: .85rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .85rem 1rem;
+  text-align: left;
+}
+
+td {
+  padding: .75rem 1rem;
+  border-bottom: 1px solid #F3F4F6;
+  vertical-align: middle;
+  color: var(--gris-oscuro);
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:hover td { background: var(--naranja-suave); }
+
+td .btn { padding: .35rem .8rem; font-size: .78rem; }
+
+td:last-child {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ============================================================
+   LOGIN PAGE
+   ============================================================ */
+body:has(#formLogin) {
+  background: var(--negro);
+  display: flex;
+  flex-direction: column;
+}
+
+body:has(#formLogin) .container {
+  margin: auto;
+  width: 100%;
+  max-width: 420px;
+}
+
+body:has(#formLogin) h1 {
+  color: var(--blanco);
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  border-color: var(--naranja);
+}
+
+body:has(#formLogin) form {
+  border-top: 4px solid var(--naranja);
+  background: var(--gris-oscuro);
+}
+
+body:has(#formLogin) label { color: #94A3B8; }
+
+body:has(#formLogin) input {
+  background: #111827;
+  border-color: #374151;
+  color: var(--blanco);
+}
+
+body:has(#formLogin) input:focus {
+  border-color: var(--naranja);
+}
+
+body:has(#formLogin) p {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--gris-medio);
+  font-size: .9rem;
+}
+
+body:has(#formLogin) p a {
+  color: var(--naranja);
+  font-weight: 600;
+}
+
+body:has(#formLogin) p a:hover { text-decoration: underline; }
+
+/* ============================================================
+   MENSAJES / ALERTAS
+   ============================================================ */
+.alerta {
+  padding: .85rem 1.2rem;
+  border-radius: var(--radio);
+  font-size: .9rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+
+.alerta-error   { background: #FEE2E2; color: #991B1B; border-left: 4px solid #B91C1C; }
+.alerta-exito   { background: #DCFCE7; color: #166534; border-left: 4px solid #16A34A; }
+.alerta-info    { background: var(--azul-suave); color: var(--azul-oscuro); border-left: 4px solid var(--azul); }
+.alerta-aviso   { background: var(--naranja-suave); color: var(--naranja-oscuro); border-left: 4px solid var(--naranja); }
+
+/* ============================================================
+   BADGE / PILL
+   ============================================================ */
+.badge {
+  display: inline-block;
+  padding: .2rem .7rem;
+  border-radius: 999px;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.badge-naranja { background: var(--naranja-suave); color: var(--naranja-oscuro); }
+.badge-azul    { background: var(--azul-suave);    color: var(--azul-oscuro); }
+
+/* ============================================================
+   ACCIONES / GRUPO BOTONES
+   ============================================================ */
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   FOOTER FORM (volver + guardar)
+   ============================================================ */
+.form-footer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Cabecera de sección con título y botón separados */
+.seccion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.seccion-header h1 {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+/* ============================================================
+   SCROLLBAR personalizada
+   ============================================================ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--gris-claro); }
+::-webkit-scrollbar-thumb { background: var(--naranja); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--naranja-oscuro); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 768px) {
+  .layout { flex-direction: column; }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 3px solid var(--naranja);
+    padding: .5rem 0;
+  }
+
+  .sidebar ul { display: flex; flex-wrap: wrap; gap: .25rem; padding: 0 .75rem; }
+  .sidebar li a { border-left: none; border-bottom: 2px solid transparent; padding: .5rem .9rem; border-radius: var(--radio); }
+  .sidebar li a:hover,
+  .sidebar li a.active { border-left-color: transparent; border-bottom-color: var(--naranja); }
+
+  .contenido { padding: 1.25rem 1rem; }
+
+  form { padding: 1.25rem 1rem; }
+
+  td:last-child { flex-direction: column; align-items: flex-start; }
+
+  .topbar { padding: 0 1rem; }
+  .topbar h2 { font-size: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 1.5rem; }
+  table { font-size: .82rem; }
+  th, td { padding: .6rem .75rem; }
+}
